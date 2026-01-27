@@ -281,6 +281,11 @@
             color: var(--primary);
         }
 
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
         .error-message {
             background: rgba(255, 59, 48, 0.15);
             color: var(--error);
@@ -505,12 +510,17 @@
             position: relative;
         }
 
-        .story-avatar img {
+        .story-avatar .avatar-content {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             border: 3px solid var(--dark);
             background: var(--dark-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
         }
 
         .story-avatar.add::after {
@@ -580,6 +590,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             position: relative;
+            cursor: pointer;
         }
 
         .post-user-info {
@@ -594,6 +605,7 @@
             display: flex;
             align-items: center;
             gap: 0.25rem;
+            cursor: pointer;
         }
 
         .post-time {
@@ -688,6 +700,7 @@
         .post-caption-user {
             font-weight: 600;
             margin-right: 0.25rem;
+            cursor: pointer;
         }
 
         .post-tags {
@@ -861,6 +874,7 @@
             gap: 1rem;
             border: 2px dashed rgba(255, 255, 255, 0.2);
             overflow: hidden;
+            position: relative;
         }
 
         .upload-preview i {
@@ -1079,16 +1093,19 @@
             max-width: 300px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.4;
         }
 
         .profile-stats {
             display: flex;
             justify-content: center;
             gap: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .stat {
             text-align: center;
+            cursor: pointer;
         }
 
         .stat-value {
@@ -1099,6 +1116,13 @@
         .stat-label {
             font-size: 0.85rem;
             color: var(--gray);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
         }
 
         .profile-tabs {
@@ -1123,6 +1147,10 @@
         .profile-tab.active {
             color: var(--primary);
             border-bottom-color: var(--primary);
+        }
+
+        .profile-content {
+            min-height: 200px;
         }
 
         /* Explorar */
@@ -1152,6 +1180,131 @@
             transform: scale(1.05);
         }
 
+        /* Modal de Post Detalhado */
+        .post-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dark);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s ease;
+        }
+
+        .post-modal-header {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .post-modal-content {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-modal-media {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .post-modal-info {
+            padding: 1.5rem;
+        }
+
+        /* Lista de Seguidores/Seguindo */
+        .users-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--dark);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s ease;
+        }
+
+        .users-header {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .users-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+        }
+
+        .users-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .user-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-radius: var(--radius-sm);
+            background: var(--dark-light);
+            transition: var(--transition);
+        }
+
+        .user-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .user-username {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
         /* Toast Notifications */
         .toast {
             position: fixed;
@@ -1167,6 +1320,8 @@
             display: none;
             animation: fadeIn 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 300px;
+            text-align: center;
         }
 
         .toast.show {
@@ -1191,6 +1346,24 @@
             .stories-container {
                 padding: 0;
             }
+
+            .post-modal-content {
+                flex-direction: row;
+                height: calc(100vh - var(--header-height));
+            }
+
+            .post-modal-media {
+                max-height: none;
+                height: 100%;
+                width: 60%;
+                object-fit: contain;
+            }
+
+            .post-modal-info {
+                width: 40%;
+                height: 100%;
+                overflow-y: auto;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -1201,6 +1374,7 @@
 
             .main-content {
                 padding-left: 280px;
+                padding-right: 280px;
             }
 
             .nav {
@@ -1221,6 +1395,14 @@
                 display: flex;
                 flex-direction: column;
                 gap: 2rem;
+                z-index: 800;
+            }
+
+            .sidebar-right {
+                left: auto;
+                right: 0;
+                border-right: none;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .sidebar-nav {
@@ -1294,6 +1476,7 @@
                 color: white;
                 font-weight: 600;
                 font-size: 0.9rem;
+                position: relative;
             }
 
             .suggestion-info {
@@ -1323,6 +1506,7 @@
                 font-weight: 600;
                 cursor: pointer;
                 transition: var(--transition);
+                min-width: 80px;
             }
 
             .follow-btn:hover {
@@ -1332,6 +1516,11 @@
             .follow-btn.following {
                 background: rgba(255, 255, 255, 0.1);
                 color: var(--gray);
+            }
+
+            .follow-btn.following:hover {
+                background: rgba(255, 59, 48, 0.2);
+                color: var(--error);
             }
         }
 
@@ -1366,6 +1555,15 @@
 
             .error-message {
                 background: rgba(255, 59, 48, 0.1);
+            }
+
+            .post, .user-menu, .sidebar, .chat-modal, .upload-modal {
+                background: var(--dark-light);
+                border-color: rgba(0, 0, 0, 0.1);
+            }
+
+            .story-avatar .avatar-content, .post-avatar, .user-avatar, .suggestion-avatar, .chat-user-avatar {
+                border-color: var(--dark-light);
             }
         }
     </style>
@@ -1486,18 +1684,13 @@
                 <i class="fas fa-user"></i>
                 <span>Meu Perfil</span>
             </div>
-            <div class="menu-item" id="settings-link">
-                <i class="fas fa-cog"></i>
-                <span>Configurações</span>
-            </div>
-            <div class="menu-item" id="notifications-link">
-                <i class="fas fa-bell"></i>
-                <span>Notificações</span>
-                <span class="notification-badge" style="margin-left: auto;">5</span>
-            </div>
             <div class="menu-item" id="saved-link">
                 <i class="fas fa-bookmark"></i>
                 <span>Salvos</span>
+            </div>
+            <div class="menu-item" id="settings-link">
+                <i class="fas fa-cog"></i>
+                <span>Configurações</span>
             </div>
             <div class="menu-item" id="logout-link">
                 <i class="fas fa-sign-out-alt"></i>
@@ -1505,7 +1698,7 @@
             </div>
         </div>
 
-        <!-- Sidebar (Desktop) -->
+        <!-- Sidebar (Desktop Esquerda) -->
         <div class="sidebar hidden" id="desktop-sidebar">
             <div class="sidebar-nav">
                 <button class="sidebar-btn active" data-page="home">
@@ -1525,17 +1718,15 @@
                     <i class="fas fa-plus-square"></i>
                     <span>Criar</span>
                 </button>
-                <button class="sidebar-btn" data-page="notifications">
-                    <i class="fas fa-heart"></i>
-                    <span>Notificações</span>
-                    <span class="notification-badge">5</span>
-                </button>
                 <button class="sidebar-btn" data-page="profile">
                     <i class="fas fa-user"></i>
                     <span>Perfil</span>
                 </button>
             </div>
-            
+        </div>
+
+        <!-- Sidebar (Desktop Direita) -->
+        <div class="sidebar sidebar-right hidden" id="desktop-sidebar-right">
             <div class="sidebar-suggestions">
                 <div class="suggestions-title">Sugestões Para Você</div>
                 <div id="suggestions-list">
@@ -1566,15 +1757,6 @@
                 </div>
             </div>
 
-            <!-- Página: Notificações -->
-            <div id="notifications-page" class="page">
-                <div class="p-3 text-center">
-                    <i class="fas fa-bell fa-2x text-gray mb-2"></i>
-                    <h3 class="mb-1">Sem notificações</h3>
-                    <p class="text-gray">Quando alguém curtir ou comentar suas publicações, você verá aqui.</p>
-                </div>
-            </div>
-
             <!-- Página: Perfil -->
             <div id="profile-page" class="page">
                 <div class="profile-header">
@@ -1592,18 +1774,21 @@
                         </h2>
                         <p id="profile-fullname" class="profile-bio"></p>
                         <div class="profile-stats">
-                            <div class="stat">
+                            <div class="stat" id="profile-posts-stat">
                                 <div class="stat-value" id="profile-posts">0</div>
                                 <div class="stat-label">Publicações</div>
                             </div>
-                            <div class="stat">
+                            <div class="stat" id="profile-followers-stat">
                                 <div class="stat-value" id="profile-followers">0</div>
                                 <div class="stat-label">Seguidores</div>
                             </div>
-                            <div class="stat">
+                            <div class="stat" id="profile-following-stat">
                                 <div class="stat-value" id="profile-following">0</div>
                                 <div class="stat-label">Seguindo</div>
                             </div>
+                        </div>
+                        <div class="profile-actions" id="profile-actions">
+                            <!-- Botões serão carregados aqui -->
                         </div>
                     </div>
                 </div>
@@ -1611,11 +1796,11 @@
                 <div class="profile-tabs">
                     <button class="profile-tab active" data-tab="posts">Publicações</button>
                     <button class="profile-tab" data-tab="videos">Vídeos</button>
-                    <button class="profile-tab" data-tab="tagged">Marcados</button>
+                    <button class="profile-tab" data-tab="saved">Salvos</button>
                 </div>
                 
-                <div id="profile-posts-content">
-                    <!-- Posts do perfil serão carregados aqui -->
+                <div class="profile-content" id="profile-content">
+                    <!-- Conteúdo do perfil será carregado aqui -->
                 </div>
             </div>
         </main>
@@ -1634,9 +1819,9 @@
                 <button class="nav-btn create" id="mobile-create-btn">
                     <i class="fas fa-plus"></i>
                 </button>
-                <button class="nav-btn" data-page="notifications">
-                    <i class="fas fa-heart"></i>
-                    <span>Curtidas</span>
+                <button class="nav-btn" id="mobile-chat-btn">
+                    <i class="fas fa-comment"></i>
+                    <span>Chat</span>
                 </button>
                 <button class="nav-btn" data-page="profile">
                     <i class="fas fa-user"></i>
@@ -1716,6 +1901,34 @@
         </div>
     </div>
 
+    <!-- Modal de Post Detalhado -->
+    <div id="post-modal" class="post-modal hidden">
+        <div class="post-modal-header">
+            <button class="back-btn" id="post-modal-back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2>Publicação</h2>
+            <div style="width: 40px;"></div>
+        </div>
+        <div class="post-modal-content" id="post-modal-content">
+            <!-- Conteúdo do post será carregado aqui -->
+        </div>
+    </div>
+
+    <!-- Modal de Seguidores/Seguindo -->
+    <div id="users-modal" class="users-modal hidden">
+        <div class="users-header">
+            <button class="back-btn" id="users-modal-back">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2 id="users-modal-title">Seguidores</h2>
+            <div style="width: 40px;"></div>
+        </div>
+        <div class="users-list" id="users-list">
+            <!-- Lista de usuários será carregada aqui -->
+        </div>
+    </div>
+
     <!-- Toast Notifications -->
     <div id="toast" class="toast"></div>
 
@@ -1726,6 +1939,7 @@
                 this.db = this.initDatabase();
                 this.currentUser = null;
                 this.currentChat = null;
+                this.viewingProfile = null;
                 this.ui = new GoonHotUI(this);
                 this.init();
             }
@@ -1777,6 +1991,15 @@
                         this.save();
                     },
                     
+                    // Posts salvos
+                    get savedPosts() {
+                        return db.savedPosts || {};
+                    },
+                    set savedPosts(value) {
+                        db.savedPosts = value;
+                        this.save();
+                    },
+                    
                     // Salvar banco de dados
                     save() {
                         localStorage.setItem('goonhot_database', JSON.stringify(db));
@@ -1785,13 +2008,237 @@
             }
 
             createInitialDatabase() {
-                const initialData = {
-                    users: [],
-                    posts: [],
-                    messages: {},
-                    followers: {}
+                // Criar dados iniciais
+                const users = [
+                    {
+                        id: 1,
+                        name: "Maria Silva",
+                        username: "mariasilva",
+                        email: "maria@email.com",
+                        password: "12345678",
+                        bio: "Aventureira e fotógrafa nas horas vagas 📸",
+                        followers: 2500,
+                        following: 1200,
+                        posts: 45,
+                        verified: true,
+                        initials: "MS",
+                        color: "#FF6B6B",
+                        avatar: null,
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        name: "Carlos Santos",
+                        username: "carloss",
+                        email: "carlos@email.com",
+                        password: "12345678",
+                        bio: "Desenvolvedor e amante de tecnologia 💻",
+                        followers: 1800,
+                        following: 950,
+                        posts: 32,
+                        verified: false,
+                        initials: "CS",
+                        color: "#4ECDC4",
+                        avatar: null,
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 3,
+                        name: "Ana Pereira",
+                        username: "anapereira",
+                        email: "ana@email.com",
+                        password: "12345678",
+                        bio: "Viajante do mundo ✈️",
+                        followers: 3200,
+                        following: 1500,
+                        posts: 78,
+                        verified: true,
+                        initials: "AP",
+                        color: "#FFD166",
+                        avatar: null,
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 4,
+                        name: "João Oliveira",
+                        username: "joao.oliveira",
+                        email: "joao@email.com",
+                        password: "12345678",
+                        bio: "Músico e compositor 🎵",
+                        followers: 4200,
+                        following: 2100,
+                        posts: 65,
+                        verified: true,
+                        initials: "JO",
+                        color: "#06D6A0",
+                        avatar: null,
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 5,
+                        name: "Beatriz Lima",
+                        username: "bealima",
+                        email: "beatriz@email.com",
+                        password: "12345678",
+                        bio: "Designer gráfica e ilustradora 🎨",
+                        followers: 1900,
+                        following: 850,
+                        posts: 28,
+                        verified: false,
+                        initials: "BL",
+                        color: "#118AB2",
+                        avatar: null,
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+
+                // Criar posts iniciais
+                const posts = [
+                    {
+                        id: 1,
+                        userId: 1,
+                        username: "mariasilva",
+                        userInitials: "MS",
+                        userColor: "#FF6B6B",
+                        userVerified: true,
+                        caption: "Pôr do sol incrível hoje na praia! 🌅 #natureza #praia #porosol",
+                        mediaType: "image",
+                        mediaUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+                        likes: 245,
+                        comments: 12,
+                        shares: 5,
+                        tags: ["natureza", "praia", "porosol"],
+                        createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 horas atrás
+                        likedBy: [2, 3, 4]
+                    },
+                    {
+                        id: 2,
+                        userId: 2,
+                        username: "carloss",
+                        userInitials: "CS",
+                        userColor: "#4ECDC4",
+                        userVerified: false,
+                        caption: "Novo projeto em andamento! 💻 #programacao #desenvolvimento #tecnologia",
+                        mediaType: "image",
+                        mediaUrl: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&q=80",
+                        likes: 189,
+                        comments: 8,
+                        shares: 3,
+                        tags: ["programacao", "desenvolvimento", "tecnologia"],
+                        createdAt: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(), // 5 horas atrás
+                        likedBy: [1, 3]
+                    },
+                    {
+                        id: 3,
+                        userId: 3,
+                        username: "anapereira",
+                        userInitials: "AP",
+                        userColor: "#FFD166",
+                        userVerified: true,
+                        caption: "Explorando novas culturas ao redor do mundo! ✈️ #viagem #aventura #cultura",
+                        mediaType: "video",
+                        mediaUrl: "https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4",
+                        likes: 321,
+                        comments: 15,
+                        shares: 7,
+                        tags: ["viagem", "aventura", "cultura"],
+                        createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), // 1 dia atrás
+                        likedBy: [1, 2, 4, 5]
+                    },
+                    {
+                        id: 4,
+                        userId: 4,
+                        username: "joao.oliveira",
+                        userInitials: "JO",
+                        userColor: "#06D6A0",
+                        userVerified: true,
+                        caption: "Nova música em produção! Em breve lançamento 🎵 #musica #producao #artista",
+                        mediaType: "image",
+                        mediaUrl: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
+                        likes: 412,
+                        comments: 21,
+                        shares: 9,
+                        tags: ["musica", "producao", "artista"],
+                        createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 dias atrás
+                        likedBy: [1, 3, 5]
+                    },
+                    {
+                        id: 5,
+                        userId: 5,
+                        username: "bealima",
+                        userInitials: "BL",
+                        userColor: "#118AB2",
+                        userVerified: false,
+                        caption: "Trabalho finalizado! O que acham? 🎨 #design #ilustracao #arte",
+                        mediaType: "image",
+                        mediaUrl: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800&q=80",
+                        likes: 167,
+                        comments: 6,
+                        shares: 2,
+                        tags: ["design", "ilustracao", "arte"],
+                        createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 dias atrás
+                        likedBy: [2, 4]
+                    }
+                ];
+
+                // Criar sistema de seguidores inicial
+                const followers = {
+                    1: { followers: [2, 3, 4, 5], following: [2, 3, 4] },
+                    2: { followers: [1, 3, 5], following: [1, 3, 4, 5] },
+                    3: { followers: [1, 2, 4, 5], following: [1, 2, 4] },
+                    4: { followers: [1, 2, 3, 5], following: [1, 3, 5] },
+                    5: { followers: [2, 4], following: [1, 2, 3, 4] }
                 };
+
+                // Criar mensagens iniciais
+                const messages = {
+                    "1_2": [
+                        {
+                            id: 1,
+                            senderId: 1,
+                            receiverId: 2,
+                            content: "Oi Carlos! Tudo bem?",
+                            timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+                            read: true
+                        },
+                        {
+                            id: 2,
+                            senderId: 2,
+                            receiverId: 1,
+                            content: "Tudo ótimo, Maria! E você?",
+                            timestamp: new Date(Date.now() - 1.5 * 60 * 60 * 1000).toISOString(),
+                            read: true
+                        },
+                        {
+                            id: 3,
+                            senderId: 1,
+                            receiverId: 2,
+                            content: "Tudo bem também! Vi seu novo projeto, ficou incrível!",
+                            timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+                            read: true
+                        }
+                    ]
+                };
+
+                // Criar posts salvos
+                const savedPosts = {
+                    1: [2, 4],
+                    2: [1, 3],
+                    3: [4],
+                    4: [5],
+                    5: [1, 2]
+                };
+
+                const initialData = {
+                    users,
+                    posts,
+                    messages,
+                    followers,
+                    savedPosts
+                };
+
                 localStorage.setItem('goonhot_database', JSON.stringify(initialData));
+                return initialData;
             }
 
             init() {
@@ -1803,6 +2250,17 @@
                     this.ui.updateUI();
                 } else {
                     this.ui.showAuth();
+                }
+
+                // Verificar se precisa inicializar dados
+                if (this.db.users.length === 0) {
+                    const initialData = this.createInitialDatabase();
+                    this.db.users = initialData.users;
+                    this.db.posts = initialData.posts;
+                    this.db.messages = initialData.messages;
+                    this.db.followers = initialData.followers;
+                    this.db.savedPosts = initialData.savedPosts;
+                    this.db.save();
                 }
             }
 
@@ -1871,7 +2329,8 @@
 
                     // Verificar se usuário já existe
                     const userExists = this.db.users.some(u => 
-                        u.username === username || u.email === email
+                        u.username.toLowerCase() === username.toLowerCase() || 
+                        u.email.toLowerCase() === email.toLowerCase()
                     );
                     
                     if (userExists) {
@@ -1880,11 +2339,11 @@
 
                     // Criar novo usuário
                     const newUser = {
-                        id: Date.now(), // ID único baseado no timestamp
+                        id: Date.now(),
                         name,
                         username: username.toLowerCase(),
                         email: email.toLowerCase(),
-                        password, // Em produção, isso seria hash
+                        password,
                         bio: bio || '',
                         followers: 0,
                         following: 0,
@@ -1905,6 +2364,9 @@
                         following: []
                     };
 
+                    // Inicializar posts salvos
+                    this.db.savedPosts[newUser.id] = [];
+
                     // Salvar banco de dados
                     this.db.save();
 
@@ -1921,6 +2383,7 @@
 
             logout() {
                 this.currentUser = null;
+                this.viewingProfile = null;
                 localStorage.removeItem('goonhot_current_user');
                 this.ui.showAuth();
             }
@@ -1963,10 +2426,8 @@
                         this.db.users[userIndex].posts += 1;
                         this.currentUser.posts += 1;
                         localStorage.setItem('goonhot_current_user', JSON.stringify(this.currentUser));
+                        this.db.save();
                     }
-
-                    // Salvar banco de dados
-                    this.db.save();
 
                     // Notificar seguidores sobre o novo post
                     this.notifyFollowers(newPost);
@@ -1985,10 +2446,25 @@
                     posts = posts.filter(post => post.userId === filters.userId);
                 }
                 
+                // Filtrar por tipo de mídia
+                if (filters.mediaType) {
+                    posts = posts.filter(post => post.mediaType === filters.mediaType);
+                }
+                
+                // Filtrar posts salvos
+                if (filters.saved) {
+                    const saved = this.db.savedPosts[this.currentUser.id] || [];
+                    posts = posts.filter(post => saved.includes(post.id));
+                }
+                
                 // Ordenar por data (mais recente primeiro)
                 posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
                 
                 return posts;
+            }
+
+            getPostById(postId) {
+                return this.db.posts.find(post => post.id === postId);
             }
 
             async likePost(postId) {
@@ -2008,17 +2484,6 @@
                         // Curtir o post
                         post.likedBy.push(userId);
                         post.likes += 1;
-                        
-                        // Verificar se o usuário que criou o post precisa ser verificado
-                        const postUserIndex = this.db.users.findIndex(u => u.id === post.userId);
-                        if (postUserIndex !== -1) {
-                            const postUser = this.db.users[postUserIndex];
-                            if (!postUser.verified && postUser.followers >= 100000) {
-                                postUser.verified = true;
-                                post.userVerified = true;
-                                this.db.users[postUserIndex] = postUser;
-                            }
-                        }
                     } else {
                         // Remover curtida
                         post.likedBy.splice(likeIndex, 1);
@@ -2033,6 +2498,41 @@
                 } catch (error) {
                     return { success: false, message: error.message };
                 }
+            }
+
+            async savePost(postId) {
+                try {
+                    if (!this.db.savedPosts[this.currentUser.id]) {
+                        this.db.savedPosts[this.currentUser.id] = [];
+                    }
+
+                    const savedPosts = this.db.savedPosts[this.currentUser.id];
+                    const postIndex = savedPosts.indexOf(postId);
+                    
+                    if (postIndex === -1) {
+                        // Salvar post
+                        savedPosts.push(postId);
+                    } else {
+                        // Remover dos salvos
+                        savedPosts.splice(postIndex, 1);
+                    }
+
+                    this.db.savedPosts[this.currentUser.id] = savedPosts;
+                    this.db.save();
+
+                    return { 
+                        success: true, 
+                        saved: postIndex === -1,
+                        savedCount: savedPosts.length 
+                    };
+                } catch (error) {
+                    return { success: false, message: error.message };
+                }
+            }
+
+            isPostSaved(postId) {
+                const saved = this.db.savedPosts[this.currentUser.id] || [];
+                return saved.includes(postId);
             }
 
             // Métodos de Seguidores
@@ -2050,18 +2550,33 @@
                     const targetUser = this.db.users[targetUserIndex];
                     const currentUserId = this.currentUser.id;
 
-                    // Verificar se já está seguindo
-                    const followingData = this.db.followers[currentUserId] || { following: [] };
-                    const isFollowing = followingData.following.includes(targetUserId);
+                    // Garantir que existam dados de seguidores
+                    if (!this.db.followers[currentUserId]) {
+                        this.db.followers[currentUserId] = { followers: [], following: [] };
+                    }
+                    if (!this.db.followers[targetUserId]) {
+                        this.db.followers[targetUserId] = { followers: [], following: [] };
+                    }
+
+                    const currentUserFollowing = this.db.followers[currentUserId].following || [];
+                    const targetUserFollowers = this.db.followers[targetUserId].followers || [];
+
+                    const isFollowing = currentUserFollowing.includes(targetUserId);
                     
                     if (isFollowing) {
                         // Deixar de seguir
-                        followingData.following = followingData.following.filter(id => id !== targetUserId);
+                        this.db.followers[currentUserId].following = currentUserFollowing.filter(id => id !== targetUserId);
+                        this.db.followers[targetUserId].followers = targetUserFollowers.filter(id => id !== currentUserId);
+                        
+                        // Atualizar contadores
                         targetUser.followers -= 1;
                         this.currentUser.following -= 1;
                     } else {
                         // Seguir
-                        followingData.following.push(targetUserId);
+                        this.db.followers[currentUserId].following.push(targetUserId);
+                        this.db.followers[targetUserId].followers.push(currentUserId);
+                        
+                        // Atualizar contadores
                         targetUser.followers += 1;
                         this.currentUser.following += 1;
                         
@@ -2070,23 +2585,6 @@
                             targetUser.verified = true;
                         }
                     }
-
-                    // Atualizar dados do seguidor
-                    this.db.followers[currentUserId] = followingData;
-                    
-                    // Garantir que o usuário alvo tenha registro de seguidores
-                    if (!this.db.followers[targetUserId]) {
-                        this.db.followers[targetUserId] = { followers: [], following: [] };
-                    }
-                    
-                    // Atualizar seguidores do usuário alvo
-                    const targetFollowers = this.db.followers[targetUserId];
-                    if (isFollowing) {
-                        targetFollowers.followers = targetFollowers.followers.filter(id => id !== currentUserId);
-                    } else {
-                        targetFollowers.followers.push(currentUserId);
-                    }
-                    this.db.followers[targetUserId] = targetFollowers;
 
                     // Atualizar usuários no banco de dados
                     this.db.users[targetUserIndex] = targetUser;
@@ -2112,8 +2610,25 @@
             }
 
             isFollowing(targetUserId) {
-                const followingData = this.db.followers[this.currentUser.id];
-                return followingData && followingData.following.includes(targetUserId);
+                if (!this.db.followers[this.currentUser.id]) {
+                    return false;
+                }
+                const following = this.db.followers[this.currentUser.id].following || [];
+                return following.includes(targetUserId);
+            }
+
+            getFollowers(userId) {
+                if (!this.db.followers[userId]) {
+                    return [];
+                }
+                return this.db.followers[userId].followers || [];
+            }
+
+            getFollowing(userId) {
+                if (!this.db.followers[userId]) {
+                    return [];
+                }
+                return this.db.followers[userId].following || [];
             }
 
             // Métodos de Mensagens
@@ -2154,11 +2669,18 @@
                 return this.db.messages[chatId] || [];
             }
 
-            // Métodos de Sugestões
+            // Métodos de Usuários
+            getUserById(userId) {
+                return this.db.users.find(user => user.id === userId);
+            }
+
+            getUserByUsername(username) {
+                return this.db.users.find(user => user.username.toLowerCase() === username.toLowerCase());
+            }
+
             getSuggestions() {
                 const currentUserId = this.currentUser.id;
-                const followingData = this.db.followers[currentUserId] || { following: [] };
-                const following = followingData.following || [];
+                const following = this.getFollowing(currentUserId);
                 
                 // Obter usuários que não são o atual nem estão sendo seguidos
                 const suggestions = this.db.users
@@ -2174,8 +2696,7 @@
 
             // Métodos de Stories
             getStories() {
-                const followingData = this.db.followers[this.currentUser.id] || { following: [] };
-                const following = followingData.following || [];
+                const following = this.getFollowing(this.currentUser.id);
                 
                 // Obter usuários seguidos que têm posts recentes
                 const stories = this.db.users
@@ -2223,10 +2744,8 @@
             notifyFollowers(post) {
                 // Em um sistema real, isso enviaria notificações push
                 // Por enquanto, apenas registramos no console
-                const followersData = this.db.followers[post.userId];
-                if (followersData && followersData.followers) {
-                    console.log(`Notificando ${followersData.followers.length} seguidores sobre novo post de ${post.username}`);
-                }
+                const followers = this.getFollowers(post.userId);
+                console.log(`Notificando ${followers.length} seguidores sobre novo post de ${post.username}`);
             }
 
             getTimeAgo(timestamp) {
@@ -2268,6 +2787,9 @@
                 document.getElementById('auth-page').classList.add('hidden');
                 document.getElementById('app').classList.remove('hidden');
                 this.updateUI();
+                this.loadStories();
+                this.loadPosts();
+                this.loadSuggestions();
             }
 
             updateUI() {
@@ -2279,8 +2801,7 @@
                 document.getElementById('header-user-initials').textContent = user.initials;
                 document.getElementById('profile-initials').textContent = user.initials;
                 document.getElementById('profile-username').textContent = user.username;
-                document.getElementById('profile-fullname').textContent = user.name;
-                document.getElementById('profile-bio').textContent = user.bio || 'Sem bio';
+                document.getElementById('profile-fullname').textContent = user.name || '';
                 
                 // Atualizar estatísticas
                 document.getElementById('profile-posts').textContent = user.posts || 0;
@@ -2288,7 +2809,7 @@
                 document.getElementById('profile-following').textContent = user.following || 0;
 
                 // Verificar selo de verificado
-                const isVerified = user.verified || user.followers >= 100000;
+                const isVerified = user.verified || (user.followers >= 100000);
                 const verifiedElements = [
                     document.getElementById('header-verified-badge'),
                     document.getElementById('profile-verified-badge'),
@@ -2296,18 +2817,19 @@
                 ];
 
                 verifiedElements.forEach(el => {
-                    el.classList.toggle('hidden', !isVerified);
+                    if (el) {
+                        el.classList.toggle('hidden', !isVerified);
+                    }
                 });
 
-                // Carregar conteúdo
-                this.loadStories();
-                this.loadPosts();
-                this.loadSuggestions();
-                this.loadProfilePosts();
+                // Carregar conteúdo do perfil
+                this.loadProfileContent();
             }
 
             loadStories() {
                 const container = document.getElementById('stories-container');
+                if (!container) return;
+                
                 container.innerHTML = '';
 
                 // Adicionar story do usuário
@@ -2315,7 +2837,9 @@
                 myStory.className = 'story';
                 myStory.innerHTML = `
                     <div class="story-avatar add" style="background: ${this.system.currentUser.color}">
-                        <div style="background: ${this.system.currentUser.color}"></div>
+                        <div class="avatar-content" style="background: ${this.system.currentUser.color}">
+                            ${this.system.currentUser.initials}
+                        </div>
                     </div>
                     <div class="story-username">Seu story</div>
                 `;
@@ -2329,7 +2853,9 @@
                     story.className = 'story';
                     story.innerHTML = `
                         <div class="story-avatar" style="background: ${user.color}">
-                            <div style="background: ${user.color}"></div>
+                            <div class="avatar-content" style="background: ${user.color}">
+                                ${user.initials}
+                            </div>
                         </div>
                         <div class="story-username">${user.username}</div>
                     `;
@@ -2340,6 +2866,8 @@
 
             loadPosts() {
                 const container = document.getElementById('posts-container');
+                if (!container) return;
+                
                 container.innerHTML = '';
 
                 const posts = this.system.getPosts();
@@ -2364,24 +2892,25 @@
                 }
 
                 posts.forEach(post => {
-                    const user = this.system.db.users.find(u => u.id === post.userId);
+                    const user = this.system.getUserById(post.userId);
                     if (!user) return;
 
                     const timeAgo = this.system.getTimeAgo(post.createdAt);
                     const isLiked = post.likedBy.includes(this.system.currentUser.id);
                     const isFollowing = this.system.isFollowing(user.id);
+                    const isSaved = this.system.isPostSaved(post.id);
 
                     const postElement = document.createElement('div');
                     postElement.className = 'post fade-in';
                     postElement.innerHTML = `
                         <div class="post-header">
                             <div class="post-user">
-                                <div class="post-avatar" style="background: ${user.color}">
+                                <div class="post-avatar" style="background: ${user.color}" data-user-id="${user.id}">
                                     ${user.initials}
                                     ${user.verified ? '<div class="verified-badge"><i class="fas fa-check"></i></div>' : ''}
                                 </div>
                                 <div class="post-user-info">
-                                    <div class="post-username">
+                                    <div class="post-username" data-user-id="${user.id}">
                                         ${user.username}
                                         ${user.verified ? '<div class="verified-badge" style="width: 12px; height: 12px; font-size: 0.5rem;"><i class="fas fa-check"></i></div>' : ''}
                                     </div>
@@ -2393,7 +2922,7 @@
                             </button>
                         </div>
                         
-                        <div class="post-content">
+                        <div class="post-content" data-post-id="${post.id}" style="cursor: pointer;">
                             ${post.mediaType === 'video' ? 
                                 `<video class="post-video" controls poster="${post.mediaUrl}?w=800&q=80&fm=jpg">
                                     <source src="${post.mediaUrl}" type="video/mp4">
@@ -2414,22 +2943,22 @@
                                     <i class="far fa-paper-plane"></i>
                                 </button>
                             </div>
-                            <button class="action-btn" data-save-post="${post.id}" title="Salvar">
-                                <i class="far fa-bookmark"></i>
+                            <button class="action-btn ${isSaved ? 'text-primary' : ''}" data-save-post="${post.id}" title="${isSaved ? 'Remover dos salvos' : 'Salvar'}">
+                                <i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i>
                             </button>
                         </div>
                         
                         <div class="post-stats">
                             <div class="post-likes">${post.likes.toLocaleString()} curtidas</div>
                             <div class="post-caption">
-                                <span class="post-caption-user">${user.username}</span> ${post.caption}
+                                <span class="post-caption-user" data-user-id="${user.id}">${user.username}</span> ${post.caption}
                             </div>
                             ${post.tags.length > 0 ? `
                                 <div class="post-tags">
                                     ${post.tags.map(tag => `<a href="#" class="post-tag">#${tag}</a>`).join(' ')}
                                 </div>
                             ` : ''}
-                            <div class="post-comments">Ver todos os ${post.comments} comentários</div>
+                            <div class="post-comments" data-post-id="${post.id}">Ver todos os ${post.comments} comentários</div>
                         </div>
                         
                         <div class="post-add-comment">
@@ -2469,12 +2998,12 @@
                     const suggestion = document.createElement('div');
                     suggestion.className = 'suggestion';
                     suggestion.innerHTML = `
-                        <div class="suggestion-avatar" style="background: ${user.color}">
+                        <div class="suggestion-avatar" style="background: ${user.color}" data-user-id="${user.id}">
                             ${user.initials}
                             ${user.verified ? '<div class="verified-badge"><i class="fas fa-check"></i></div>' : ''}
                         </div>
                         <div class="suggestion-info">
-                            <div class="suggestion-username">
+                            <div class="suggestion-username" data-user-id="${user.id}">
                                 ${user.username}
                                 ${user.verified ? '<div class="verified-badge" style="width: 12px; height: 12px; font-size: 0.5rem;"><i class="fas fa-check"></i></div>' : ''}
                             </div>
@@ -2486,27 +3015,99 @@
                     `;
                     container.appendChild(suggestion);
                 });
+
+                // Adicionar eventos aos botões de seguir
+                this.bindFollowEvents();
+            }
+
+            loadProfileContent() {
+                const userId = this.system.viewingProfile || this.system.currentUser.id;
+                const user = this.system.getUserById(userId);
+                if (!user) return;
+
+                const isCurrentUser = userId === this.system.currentUser.id;
+                const isFollowing = this.system.isFollowing(userId);
+
+                // Atualizar ações do perfil
+                const actionsContainer = document.getElementById('profile-actions');
+                if (actionsContainer) {
+                    if (isCurrentUser) {
+                        actionsContainer.innerHTML = `
+                            <button class="btn btn-secondary" id="edit-profile-btn">
+                                <i class="fas fa-edit"></i> Editar Perfil
+                            </button>
+                            <button class="btn btn-outline" id="view-archive-btn">
+                                <i class="fas fa-archive"></i> Arquivo
+                            </button>
+                        `;
+                    } else {
+                        actionsContainer.innerHTML = `
+                            <button class="btn btn-primary ${isFollowing ? 'following' : ''}" id="follow-profile-btn" data-user-id="${userId}">
+                                ${isFollowing ? 'Seguindo' : 'Seguir'}
+                            </button>
+                            <button class="btn btn-outline" id="message-profile-btn" data-user-id="${userId}">
+                                <i class="fas fa-comment"></i> Mensagem
+                            </button>
+                        `;
+                    }
+                }
+
+                // Carregar posts do perfil
+                this.loadProfilePosts();
             }
 
             loadProfilePosts() {
-                if (!this.system.currentUser) return;
-                
-                const container = document.getElementById('profile-posts-content');
+                const userId = this.system.viewingProfile || this.system.currentUser.id;
+                const activeTab = document.querySelector('.profile-tab.active')?.dataset.tab || 'posts';
+                const container = document.getElementById('profile-content');
                 if (!container) return;
                 
                 container.innerHTML = '';
 
-                const posts = this.system.getPosts({ userId: this.system.currentUser.id });
+                let posts = [];
                 
+                switch(activeTab) {
+                    case 'posts':
+                        posts = this.system.getPosts({ userId });
+                        break;
+                    case 'videos':
+                        posts = this.system.getPosts({ userId, mediaType: 'video' });
+                        break;
+                    case 'saved':
+                        if (userId === this.system.currentUser.id) {
+                            posts = this.system.getPosts({ saved: true });
+                        }
+                        break;
+                }
+
                 if (posts.length === 0) {
+                    let message = '';
+                    let icon = 'fas fa-camera';
+                    
+                    switch(activeTab) {
+                        case 'posts':
+                            message = 'Nenhuma publicação ainda';
+                            icon = 'fas fa-camera';
+                            break;
+                        case 'videos':
+                            message = 'Nenhum vídeo ainda';
+                            icon = 'fas fa-video';
+                            break;
+                        case 'saved':
+                            message = 'Nenhum post salvo';
+                            icon = 'fas fa-bookmark';
+                            break;
+                    }
+
                     container.innerHTML = `
                         <div class="text-center p-3">
-                            <i class="fas fa-camera fa-2x text-gray mb-2"></i>
-                            <h3 class="mb-1">Nenhuma publicação</h3>
-                            <p class="text-gray">Compartilhe suas primeiras fotos e vídeos</p>
-                            <button class="btn btn-outline mt-2" id="profile-first-post">
-                                <i class="fas fa-plus"></i> Compartilhar algo
-                            </button>
+                            <i class="${icon} fa-2x text-gray mb-2"></i>
+                            <h3 class="mb-1">${message}</h3>
+                            ${activeTab === 'posts' && userId === this.system.currentUser.id ? 
+                                `<button class="btn btn-outline mt-2" id="profile-first-post">
+                                    <i class="fas fa-plus"></i> Compartilhar algo
+                                </button>` : ''
+                            }
                         </div>
                     `;
                     
@@ -2525,13 +3126,57 @@
                     const item = document.createElement('div');
                     item.className = 'explore-item';
                     item.innerHTML = `
-                        <img src="${post.mediaUrl}" alt="Post" loading="lazy">
+                        ${post.mediaType === 'video' ? 
+                            `<div style="position: relative;">
+                                <img src="${post.mediaUrl}?w=800&q=80&fm=jpg" alt="Post" loading="lazy">
+                                <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem;">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>` : 
+                            `<img src="${post.mediaUrl}" alt="Post" loading="lazy">`
+                        }
                     `;
                     item.onclick = () => this.showPostDetail(post.id);
                     grid.appendChild(item);
                 });
                 
                 container.appendChild(grid);
+            }
+
+            async showUserProfile(userId) {
+                const user = this.system.getUserById(userId);
+                if (!user) {
+                    this.showToast('Usuário não encontrado');
+                    return;
+                }
+
+                this.system.viewingProfile = userId;
+                this.switchPage('profile');
+                
+                // Atualizar informações do perfil visualizado
+                document.getElementById('profile-initials').textContent = user.initials;
+                document.getElementById('profile-username').textContent = user.username;
+                document.getElementById('profile-fullname').textContent = user.name || '';
+                document.getElementById('profile-bio').textContent = user.bio || 'Sem bio';
+                document.getElementById('profile-posts').textContent = user.posts || 0;
+                document.getElementById('profile-followers').textContent = user.followers || 0;
+                document.getElementById('profile-following').textContent = user.following || 0;
+
+                // Verificar selo de verificado
+                const isVerified = user.verified || (user.followers >= 100000);
+                const verifiedElements = [
+                    document.getElementById('profile-verified-badge'),
+                    document.getElementById('profile-username-badge')
+                ];
+
+                verifiedElements.forEach(el => {
+                    if (el) {
+                        el.classList.toggle('hidden', !isVerified);
+                    }
+                });
+
+                // Carregar conteúdo do perfil
+                this.loadProfileContent();
             }
 
             showUploadModal() {
@@ -2556,7 +3201,7 @@
 
             showChatModal(userId = null) {
                 if (userId) {
-                    const user = this.system.db.users.find(u => u.id === userId);
+                    const user = this.system.getUserById(userId);
                     if (user) {
                         this.system.currentChat = user;
                         this.loadChat();
@@ -2610,20 +3255,140 @@
                 container.scrollTop = container.scrollHeight;
             }
 
-            async sendMessage() {
-                const input = document.getElementById('chat-input');
-                const message = input.value.trim();
-                
-                if (message && this.system.currentChat) {
-                    const result = await this.system.sendMessage(this.system.currentChat.id, message);
-                    if (result.success) {
-                        input.value = '';
-                        this.loadChat();
-                        this.showToast('Mensagem enviada!');
-                    } else {
-                        this.showToast(result.message);
-                    }
+            showPostDetail(postId) {
+                const post = this.system.getPostById(postId);
+                if (!post) {
+                    this.showToast('Post não encontrado');
+                    return;
                 }
+
+                const user = this.system.getUserById(post.userId);
+                if (!user) return;
+
+                const timeAgo = this.system.getTimeAgo(post.createdAt);
+                const isLiked = post.likedBy.includes(this.system.currentUser.id);
+                const isSaved = this.system.isPostSaved(post.id);
+
+                document.getElementById('post-modal').classList.remove('hidden');
+                const container = document.getElementById('post-modal-content');
+                container.innerHTML = `
+                    ${post.mediaType === 'video' ? 
+                        `<video class="post-modal-media" controls>
+                            <source src="${post.mediaUrl}" type="video/mp4">
+                        </video>` : 
+                        `<img src="${post.mediaUrl}" alt="Post" class="post-modal-media">`
+                    }
+                    <div class="post-modal-info">
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="post-avatar" style="background: ${user.color}" data-user-id="${user.id}">
+                                    ${user.initials}
+                                    ${user.verified ? '<div class="verified-badge"><i class="fas fa-check"></i></div>' : ''}
+                                </div>
+                                <div class="post-user-info">
+                                    <div class="post-username" data-user-id="${user.id}">
+                                        ${user.username}
+                                        ${user.verified ? '<div class="verified-badge" style="width: 12px; height: 12px; font-size: 0.5rem;"><i class="fas fa-check"></i></div>' : ''}
+                                    </div>
+                                    <div class="post-time">${timeAgo}</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="post-stats">
+                            <div class="post-likes">${post.likes.toLocaleString()} curtidas</div>
+                            <div class="post-caption">
+                                <span class="post-caption-user" data-user-id="${user.id}">${user.username}</span> ${post.caption}
+                            </div>
+                            ${post.tags.length > 0 ? `
+                                <div class="post-tags">
+                                    ${post.tags.map(tag => `<a href="#" class="post-tag">#${tag}</a>`).join(' ')}
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <div class="post-actions">
+                            <div class="post-actions-left">
+                                <button class="action-btn ${isLiked ? 'liked' : ''}" data-post-id="${post.id}" title="${isLiked ? 'Descurtir' : 'Curtir'}">
+                                    <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
+                                </button>
+                                <button class="action-btn" data-comment-post="${post.id}" title="Comentar">
+                                    <i class="far fa-comment"></i>
+                                </button>
+                                <button class="action-btn" data-share-post="${post.id}" title="Compartilhar">
+                                    <i class="far fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            <button class="action-btn ${isSaved ? 'text-primary' : ''}" data-save-post="${post.id}" title="${isSaved ? 'Remover dos salvos' : 'Salvar'}">
+                                <i class="${isSaved ? 'fas' : 'far'} fa-bookmark"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="post-add-comment">
+                            <input type="text" class="comment-input" placeholder="Adicione um comentário..." data-post-id="${post.id}">
+                            <button class="comment-btn" data-post-id="${post.id}">Publicar</button>
+                        </div>
+                    </div>
+                `;
+
+                // Adicionar eventos
+                this.bindPostEvents();
+            }
+
+            hidePostModal() {
+                document.getElementById('post-modal').classList.add('hidden');
+            }
+
+            showUsersModal(title, userIds) {
+                const container = document.getElementById('users-list');
+                container.innerHTML = '';
+
+                document.getElementById('users-modal-title').textContent = title;
+                document.getElementById('users-modal').classList.remove('hidden');
+
+                if (userIds.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center p-3">
+                            <i class="fas fa-users fa-2x text-gray mb-2"></i>
+                            <p class="text-gray">Nenhum usuário encontrado</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                userIds.forEach(userId => {
+                    const user = this.system.getUserById(userId);
+                    if (!user) return;
+
+                    const isFollowing = this.system.isFollowing(userId);
+                    const isCurrentUser = userId === this.system.currentUser.id;
+
+                    const userItem = document.createElement('div');
+                    userItem.className = 'user-item';
+                    userItem.innerHTML = `
+                        <div class="user-avatar" style="background: ${user.color}" data-user-id="${user.id}">
+                            ${user.initials}
+                            ${user.verified ? '<div class="verified-badge"><i class="fas fa-check"></i></div>' : ''}
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">${user.name}</div>
+                            <div class="user-username">@${user.username}</div>
+                        </div>
+                        ${!isCurrentUser ? `
+                            <button class="follow-btn ${isFollowing ? 'following' : ''}" data-user-id="${user.id}">
+                                ${isFollowing ? 'Seguindo' : 'Seguir'}
+                            </button>
+                        ` : ''}
+                    `;
+                    container.appendChild(userItem);
+                });
+
+                // Adicionar eventos
+                this.bindFollowEvents();
+            }
+
+            hideUsersModal() {
+                document.getElementById('users-modal').classList.add('hidden');
             }
 
             async publishPost() {
@@ -2642,10 +3407,26 @@
                 
                 if (result.success) {
                     this.hideUploadModal();
-                    this.updateUI();
+                    this.loadPosts();
+                    this.loadProfileContent();
                     this.showToast('Publicação criada com sucesso! 🎉');
                 } else {
                     this.showToast(result.message);
+                }
+            }
+
+            async sendMessage() {
+                const input = document.getElementById('chat-input');
+                const message = input.value.trim();
+                
+                if (message && this.system.currentChat) {
+                    const result = await this.system.sendMessage(this.system.currentChat.id, message);
+                    if (result.success) {
+                        input.value = '';
+                        this.loadChat();
+                    } else {
+                        this.showToast(result.message);
+                    }
                 }
             }
 
@@ -2755,11 +3536,18 @@
                 // Chat
                 document.getElementById('chat-btn').addEventListener('click', () => this.showChatModal(1));
                 document.getElementById('sidebar-chat-btn').addEventListener('click', () => this.showChatModal(1));
+                document.getElementById('mobile-chat-btn').addEventListener('click', () => this.showChatModal(1));
                 document.getElementById('chat-back').addEventListener('click', () => this.hideChatModal());
                 document.getElementById('send-message').addEventListener('click', () => this.sendMessage());
                 document.getElementById('chat-input').addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') this.sendMessage();
                 });
+
+                // Post modal
+                document.getElementById('post-modal-back').addEventListener('click', () => this.hidePostModal());
+
+                // Users modal
+                document.getElementById('users-modal-back').addEventListener('click', () => this.hideUsersModal());
 
                 // Menu do usuário
                 document.getElementById('user-menu-btn').addEventListener('click', (e) => {
@@ -2774,18 +3562,43 @@
                 });
 
                 // Navegação
-                document.querySelectorAll('.nav-btn').forEach(btn => {
+                document.querySelectorAll('.nav-btn:not(.create):not(#mobile-chat-btn)').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         const page = e.currentTarget.dataset.page;
                         this.switchPage(page);
                     });
                 });
 
-                document.querySelectorAll('.sidebar-btn').forEach(btn => {
+                document.querySelectorAll('.sidebar-btn:not(#sidebar-create-btn):not(#sidebar-chat-btn)').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         const page = e.currentTarget.dataset.page;
                         this.switchPage(page);
                     });
+                });
+
+                // Tabs do perfil
+                document.querySelectorAll('.profile-tab').forEach(tab => {
+                    tab.addEventListener('click', (e) => {
+                        const tabName = e.currentTarget.dataset.tab;
+                        
+                        document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        
+                        this.loadProfilePosts();
+                    });
+                });
+
+                // Estatísticas do perfil
+                document.getElementById('profile-followers-stat')?.addEventListener('click', () => {
+                    const userId = this.system.viewingProfile || this.system.currentUser.id;
+                    const followers = this.system.getFollowers(userId);
+                    this.showUsersModal('Seguidores', followers);
+                });
+
+                document.getElementById('profile-following-stat')?.addEventListener('click', () => {
+                    const userId = this.system.viewingProfile || this.system.currentUser.id;
+                    const following = this.system.getFollowing(userId);
+                    this.showUsersModal('Seguindo', following);
                 });
 
                 // Logout
@@ -2793,21 +3606,15 @@
                     this.system.logout();
                 });
 
-                // Seguir usuários
-                document.addEventListener('click', async (e) => {
-                    if (e.target.classList.contains('follow-btn')) {
-                        const btn = e.target;
-                        const userId = parseInt(btn.dataset.userId);
-                        
-                        const result = await this.system.followUser(userId);
-                        if (result.success) {
-                            btn.textContent = result.following ? 'Seguindo' : 'Seguir';
-                            btn.classList.toggle('following', result.following);
-                            this.showToast(result.following ? 'Agora você segue este usuário!' : 'Você deixou de seguir este usuário');
-                            this.updateUI();
-                        }
-                    }
+                // Perfil no menu
+                document.getElementById('profile-link').addEventListener('click', () => {
+                    this.system.viewingProfile = null;
+                    this.switchPage('profile');
+                    document.getElementById('user-menu').classList.remove('show');
                 });
+
+                // Seguir usuários
+                this.bindFollowEvents();
 
                 // Fechar modais ao clicar fora
                 document.addEventListener('click', (e) => {
@@ -2816,6 +3623,12 @@
                     }
                     if (e.target.classList.contains('chat-modal')) {
                         this.hideChatModal();
+                    }
+                    if (e.target.classList.contains('post-modal')) {
+                        this.hidePostModal();
+                    }
+                    if (e.target.classList.contains('users-modal')) {
+                        this.hideUsersModal();
                     }
                 });
 
@@ -2831,20 +3644,29 @@
                 document.getElementById('register-password').addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') document.getElementById('register-btn').click();
                 });
+
+                // Responsividade - sidebars
+                if (window.innerWidth >= 1024) {
+                    document.getElementById('desktop-sidebar').classList.remove('hidden');
+                    document.getElementById('desktop-sidebar-right').classList.remove('hidden');
+                }
             }
 
             bindPostEvents() {
                 // Curtir posts
                 document.addEventListener('click', async (e) => {
                     const likeBtn = e.target.closest('.action-btn[data-post-id]');
-                    if (likeBtn) {
+                    if (likeBtn && !likeBtn.hasAttribute('data-comment-post') && 
+                        !likeBtn.hasAttribute('data-share-post') && 
+                        !likeBtn.hasAttribute('data-save-post')) {
                         const postId = parseInt(likeBtn.dataset.postId);
                         const result = await this.system.likePost(postId);
                         
                         if (result.success) {
                             // Atualizar ícone e contador
                             const heartIcon = likeBtn.querySelector('i');
-                            const likeCount = likeBtn.closest('.post').querySelector('.post-likes');
+                            const likeCount = likeBtn.closest('.post')?.querySelector('.post-likes') ||
+                                             likeBtn.closest('.post-modal-info')?.querySelector('.post-likes');
                             
                             if (result.liked) {
                                 heartIcon.classList.remove('far');
@@ -2856,7 +3678,34 @@
                                 likeBtn.classList.remove('liked');
                             }
                             
-                            likeCount.textContent = `${result.likes.toLocaleString()} curtidas`;
+                            if (likeCount) {
+                                likeCount.textContent = `${result.likes.toLocaleString()} curtidas`;
+                            }
+                        }
+                    }
+                });
+
+                // Salvar posts
+                document.addEventListener('click', async (e) => {
+                    const saveBtn = e.target.closest('.action-btn[data-save-post]');
+                    if (saveBtn) {
+                        const postId = parseInt(saveBtn.dataset.postId);
+                        const result = await this.system.savePost(postId);
+                        
+                        if (result.success) {
+                            // Atualizar ícone
+                            const bookmarkIcon = saveBtn.querySelector('i');
+                            if (result.saved) {
+                                bookmarkIcon.classList.remove('far');
+                                bookmarkIcon.classList.add('fas');
+                                saveBtn.classList.add('text-primary');
+                                saveBtn.title = 'Remover dos salvos';
+                            } else {
+                                bookmarkIcon.classList.remove('fas');
+                                bookmarkIcon.classList.add('far');
+                                saveBtn.classList.remove('text-primary');
+                                saveBtn.title = 'Salvar';
+                            }
                         }
                     }
                 });
@@ -2884,6 +3733,78 @@
                         }
                     }
                 });
+
+                // Ver perfil de usuário
+                document.addEventListener('click', (e) => {
+                    const userElement = e.target.closest('[data-user-id]');
+                    if (userElement && !userElement.classList.contains('follow-btn')) {
+                        const userId = parseInt(userElement.dataset.userId);
+                        this.showUserProfile(userId);
+                    }
+                });
+
+                // Ver detalhes do post
+                document.addEventListener('click', (e) => {
+                    const postContent = e.target.closest('.post-content[data-post-id]');
+                    if (postContent) {
+                        const postId = parseInt(postContent.dataset.postId);
+                        this.showPostDetail(postId);
+                    }
+
+                    const commentsLink = e.target.closest('.post-comments[data-post-id]');
+                    if (commentsLink) {
+                        const postId = parseInt(commentsLink.dataset.postId);
+                        this.showPostDetail(postId);
+                    }
+                });
+
+                // Seguir no perfil
+                document.addEventListener('click', (e) => {
+                    const followBtn = e.target.closest('#follow-profile-btn');
+                    if (followBtn) {
+                        const userId = parseInt(followBtn.dataset.userId);
+                        this.handleFollow(userId, followBtn);
+                    }
+
+                    const messageBtn = e.target.closest('#message-profile-btn');
+                    if (messageBtn) {
+                        const userId = parseInt(messageBtn.dataset.userId);
+                        this.showChatModal(userId);
+                    }
+                });
+            }
+
+            bindFollowEvents() {
+                // Seguir usuários
+                document.addEventListener('click', async (e) => {
+                    const followBtn = e.target.closest('.follow-btn');
+                    if (followBtn && followBtn.hasAttribute('data-user-id')) {
+                        const userId = parseInt(followBtn.dataset.userId);
+                        this.handleFollow(userId, followBtn);
+                    }
+                });
+            }
+
+            async handleFollow(userId, followBtn) {
+                const result = await this.system.followUser(userId);
+                if (result.success) {
+                    followBtn.textContent = result.following ? 'Seguindo' : 'Seguir';
+                    followBtn.classList.toggle('following', result.following);
+                    
+                    if (result.following) {
+                        this.showToast('Agora você segue este usuário!');
+                    } else {
+                        this.showToast('Você deixou de seguir este usuário');
+                    }
+                    
+                    // Atualizar estatísticas
+                    if (this.system.viewingProfile === userId) {
+                        this.updateUI();
+                    }
+                    
+                    // Atualizar sugestões
+                    this.loadSuggestions();
+                }
             }
 
             switchPage(page) {
@@ -2911,14 +3832,18 @@
                 // Atualizar conteúdo da página
                 switch(page) {
                     case 'home':
+                        this.system.viewingProfile = null;
                         this.loadPosts();
                         this.loadStories();
                         break;
-                    case 'profile':
-                        this.updateUI();
-                        break;
                     case 'explore':
+                        this.system.viewingProfile = null;
                         this.loadExplore();
+                        break;
+                    case 'profile':
+                        if (!this.system.viewingProfile) {
+                            this.updateUI();
+                        }
                         break;
                 }
             }
@@ -2939,7 +3864,15 @@
                     const item = document.createElement('div');
                     item.className = 'explore-item';
                     item.innerHTML = `
-                        <img src="${post.mediaUrl}" alt="Post" loading="lazy">
+                        ${post.mediaType === 'video' ? 
+                            `<div style="position: relative;">
+                                <img src="${post.mediaUrl}?w=800&q=80&fm=jpg" alt="Post" loading="lazy">
+                                <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem;">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>` : 
+                            `<img src="${post.mediaUrl}" alt="Post" loading="lazy">`
+                        }
                     `;
                     item.onclick = () => this.showPostDetail(post.id);
                     container.appendChild(item);
@@ -2965,16 +3898,6 @@
                 setTimeout(() => {
                     toast.classList.remove('show');
                 }, 3000);
-            }
-
-            showUserProfile(userId) {
-                // TODO: Implementar visualização de perfil de outros usuários
-                this.showToast('Visualização de perfil em desenvolvimento');
-            }
-
-            showPostDetail(postId) {
-                // TODO: Implementar visualização detalhada do post
-                this.showToast('Visualização do post em desenvolvimento');
             }
         }
 
