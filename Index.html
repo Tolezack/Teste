@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoonHot - Conecte-se e compartilhe vídeos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #ff2d8e;
+            --secondary-color: #7c3aed;
+            --dark-color: #1f2937;
+            --light-color: #f9fafb;
+            --gray-color: #9ca3af;
+            --border-color: #e5e7eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --verified-color: #3b82f6;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Login Page */
+        .login-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .login-left {
+            flex: 1;
+            background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: white;
+        }
+
+        .login-left h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-left p {
+            font-size: 1.2rem;
+            max-width: 500px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .login-left img {
+            max-width: 400px;
+            margin-top: 2rem;
+        }
+
+        .login-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background-color: white;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0247e;
+        }
+
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+        }
+
+        .login-toggle {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--gray-color);
+        }
+
+        .login-toggle a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .error-message {
+            background-color: #fee;
+            color: #c00;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            width: 300px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            padding: 0.3rem;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icons i {
+            font-size: 1.3rem;
+            color: var(--dark-color);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-icons i:hover {
+            color: var(--primary-color);
+        }
+
+        .user-profile-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .verified-badge {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            background-color: var(--verified-color);
+            color: white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+        }
+
+        .user-profile-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            padding: 0.5rem 0;
+            min-width: 180px;
+            display: none;
+            z-index: 10;
+        }
+
+        .user-profile-menu.active {
+            display: block;
+        }
+
+        .user-profile-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: background-color 0.3s;
+        }
+
+        .user-profile-menu a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .user-profile-menu a i {
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* Stories e Feed */
+        .main-content {
+            flex: 2;
+        }
+
+        .stories-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+        }
+
+        .story {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            min-width: 80px;
+        }
+
+        .story-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .story-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+        }
+
+        .story-username {
+            font-size: 0.8rem;
+            font-weight: 500;
+            max-width: 70px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .add-story {
+            position: relative;
+        }
+
+        .add-story .story-avatar {
+            background: #e5e7eb;
+        }
+
+        .add-story i {
+            position: absolute;
+            bottom: 10px;
+            right: 5px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        /* Postagens */
+        .post {
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .post-user {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .post-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .post-user-info h4 {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .post-user-info p {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+        }
+
+        .post-menu {
+            cursor: pointer;
+            color: var(--gray-color);
+        }
+
+        .post-content {
+            position: relative;
+        }
+
+        .post-media {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .post-actions {
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .post-actions-left {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-actions i {
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--dark-color);
+            transition: color 0.3s;
+        }
+
+        .post-actions i:hover {
+            color: var(--primary-color);
+        }
+
+        .liked {
+            color: var(--primary-color) !important;
+        }
+
+        .post-info {
+            padding: 0 1rem;
+        }
+
+        .post-likes {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-caption {
+            margin-bottom: 0.5rem;
+        }
+
+        .post-caption a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .post-comments {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+        }
+
+        .post-time {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .comments-section {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 0.5rem;
+            padding: 0 1rem;
+        }
+
+        .comment {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .comment-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .comment-text {
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        .comment-time {
+            font-size: 0.7rem;
+            color: var(--gray-color);
+            margin-top: 0.2rem;
+        }
+
+        .add-comment {
+            display: flex;
+            padding: 0 1rem 1rem;
+            gap: 0.5rem;
+        }
+
+        .add-comment input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .add-comment button {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+        }
+
+        .user-profile {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-profile-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        .user-profile-info h3 {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .user-profile-info p {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        .user-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .user-stat {
+            text-align: center;
+        }
+
+        .user-stat-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .user-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+        }
+
+        .suggestions {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .suggestions-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .suggestions-header h3 {
+            font-weight: 600;
+            color: var(--gray-color);
+        }
+
+        .suggestions-header a {
+            color: var(--dark-color);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .suggestion {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .suggestion-user {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .suggestion-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .suggestion-info h4 {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .suggestion-info p {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+        }
+
+        .follow-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .following {
+            color: var(--gray-color) !important;
+        }
+
+        .chat-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            max-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .chat-header h3 {
+            font-weight: 600;
+        }
+
+        .chat-header i {
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .chat-users {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .chat-user {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-user:hover {
+            background-color: #f5f5f5;
+        }
+
+        .chat-user.active {
+            background-color: #f0f0f0;
+        }
+
+        .chat-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .chat-user-info h4 {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .chat-user-info p {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .chat-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--success-color);
+            margin-left: auto;
+        }
+
+        .chat-offline {
+            background-color: var(--gray-color);
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.8rem;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .message-received {
+            align-self: flex-start;
+            background-color: white;
+            border-top-left-radius: 4px;
+        }
+
+        .message-sent {
+            align-self: flex-end;
+            background-color: var(--primary-color);
+            color: white;
+            border-top-right-radius: 4px;
+        }
+
+        .message-sender {
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .message-text {
+            font-size: 0.9rem;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            text-align: right;
+            margin-top: 0.3rem;
+            opacity: 0.7;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-input button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        /* Upload modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-header h2 {
+            color: var(--dark-color);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray-color);
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .upload-preview {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .upload-preview img, .upload-preview video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--gray-color);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            color: var(--gray-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .search-bar {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+            
+            .login-left {
+                padding: 2rem 1rem;
+            }
+            
+            .login-left h1 {
+                font-size: 2rem;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .search-bar {
+                order: 3;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .nav-icons {
+                gap: 1rem;
+            }
+            
+            .post-media {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-left">
+            <h1><i class="fas fa-fire"></i> GoonHot</h1>
+            <p>Conecte-se com amigos, compartilhe vídeos incríveis e descubra conteúdos novos todos os dias. A rede social feita para criadores de conteúdo!</p>
+            <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="GoonHot">
+        </div>
+        
+        <div class="login-right">
+            <div class="login-form" id="login-form">
+                <h2>Entrar no GoonHot</h2>
+                <div class="error-message" id="login-error"></div>
+                <div class="form-group">
+                    <label for="login-email">E-mail ou nome de usuário</label>
+                    <input type="text" id="login-email" class="form-control" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" class="form-control" placeholder="Sua senha">
+                </div>
+                <button type="button" class="btn btn-primary" id="login-btn">Entrar</button>
+                <div class="login-toggle">
+                    Não tem uma conta? <a href="#" id="show-register">Registre-se</a>
+                </div>
+            </div>
+            
+            <div class="login-form hidden" id="register-form">
+                <h2>Criar conta no GoonHot</h2>
+                <div class="error-message" id="register-error"></div>
+                <div class="form-group">
+                    <label for="register-name">Nome completo</label>
+                    <input type="text" id="register-name" class="form-control" placeholder="Seu nome completo">
+                </div>
+                <div class="form-group">
+                    <label for="register-username">Nome de usuário</label>
+                    <input type="text" id="register-username" class="form-control" placeholder="Nome de usuário único">
+                </div>
+                <div class="form-group">
+                    <label for="register-email">E-mail</label>
+                    <input type="email" id="register-email" class="form-control" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Senha</label>
+                    <input type="password" id="register-password" class="form-control" placeholder="Crie uma senha forte">
+                </div>
+                <button type="button" class="btn btn-primary" id="register-btn">Criar conta</button>
+                <div class="login-toggle">
+                    Já tem uma conta? <a href="#" id="show-login">Faça login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App (hidden initially) -->
+    <div id="app" class="hidden">
+        <!-- Header -->
+        <header>
+            <div class="header-container">
+                <a href="#" class="logo">
+                    <i class="fas fa-fire"></i>
+                    <span>GoonHot</span>
+                </a>
+                
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Pesquisar no GoonHot...">
+                </div>
+                
+                <div class="nav-icons">
+                    <i class="fas fa-home" id="home-btn"></i>
+                    <i class="fas fa-comment" id="chat-toggle-btn"></i>
+                    <i class="fas fa-plus-square" id="upload-toggle-btn"></i>
+                    <i class="fas fa-compass" id="explore-btn"></i>
+                    <i class="fas fa-heart" id="notifications-btn"></i>
+                </div>
+                
+                <div class="user-profile-header" id="user-profile-header">
+                    <div class="user-avatar" id="user-avatar-header">
+                        <span id="user-initials">JD</span>
+                        <div class="verified-badge hidden" id="user-verified-badge">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="user-profile-menu" id="user-profile-menu">
+                        <a href="#" id="profile-link"><i class="fas fa-user"></i> Meu perfil</a>
+                        <a href="#" id="settings-link"><i class="fas fa-cog"></i> Configurações</a>
+                        <a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="container">
+            <!-- Feed Principal -->
+            <div class="main-content" id="main-content">
+                <!-- Stories -->
+                <div class="stories-container" id="stories-container">
+                    <!-- Stories serão carregados dinamicamente -->
+                </div>
+
+                <!-- Feed de Publicações -->
+                <div id="feed-container">
+                    <!-- Postagens serão carregadas dinamicamente -->
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Perfil do usuário -->
+                <div class="user-profile">
+                    <div class="user-profile-avatar" id="user-profile-avatar-sidebar">
+                        <span id="user-initials-sidebar">JD</span>
+                        <div class="verified-badge hidden" id="user-verified-badge-sidebar">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="user-profile-info">
+                        <h3 id="username-sidebar">joaodasilva
+                            <div class="verified-badge hidden" id="username-verified-badge">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </h3>
+                        <p id="fullname-sidebar">João da Silva</p>
+                        <div class="user-stats">
+                            <div class="user-stat">
+                                <div class="user-stat-value" id="followers-count">1.2K</div>
+                                <div class="user-stat-label">Seguidores</div>
+                            </div>
+                            <div class="user-stat">
+                                <div class="user-stat-value" id="following-count">348</div>
+                                <div class="user-stat-label">Seguindo</div>
+                            </div>
+                            <div class="user-stat">
+                                <div class="user-stat-value" id="posts-count">24</div>
+                                <div class="user-stat-label">Posts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sugestões -->
+                <div class="suggestions">
+                    <div class="suggestions-header">
+                        <h3>Sugestões para você</h3>
+                        <a href="#" id="see-all-suggestions">Ver tudo</a>
+                    </div>
+                    <div id="suggestions-container">
+                        <!-- Sugestões serão carregadas dinamicamente -->
+                    </div>
+                </div>
+                
+                <!-- Bate-papo -->
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3>Mensagens</h3>
+                        <i class="fas fa-edit" id="new-chat-btn"></i>
+                    </div>
+                    
+                    <div class="chat-users" id="chat-users">
+                        <!-- Usuários do chat serão carregados dinamicamente -->
+                    </div>
+                    
+                    <!-- Área de mensagens (inicialmente oculta) -->
+                    <div class="chat-messages hidden" id="chat-messages">
+                        <!-- Mensagens serão carregadas dinamicamente -->
+                    </div>
+                    
+                    <!-- Input de mensagem (inicialmente oculto) -->
+                    <div class="chat-input hidden" id="chat-input">
+                        <input type="text" id="message-input" placeholder="Digite sua mensagem...">
+                        <button id="send-message-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Upload -->
+        <div class="modal hidden" id="upload-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Criar nova publicação</h2>
+                    <button class="close-modal" id="close-upload-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="upload-preview" id="upload-preview">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <p class="upload-text">Arraste uma imagem ou vídeo aqui, ou clique para selecionar</p>
+                        <img id="image-preview" alt="Preview">
+                        <video id="video-preview" controls></video>
+                    </div>
+                    
+                    <form id="upload-form">
+                        <div class="form-group">
+                            <label for="media-file">Selecionar arquivo</label>
+                            <input type="file" id="media-file" class="form-control" accept="image/*,video/*">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="post-caption-input">Legenda</label>
+                            <textarea id="post-caption-input" class="form-control" placeholder="Adicione uma legenda para sua publicação..." rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="post-tags">Tags (separadas por vírgula)</label>
+                            <input type="text" id="post-tags" class="form-control" placeholder="ex: viagem, natureza, verão">
+                        </div>
+                        
+                        <div class="modal-actions">
+                            <button type="button" class="btn btn-secondary" id="cancel-upload">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" id="publish-post">Publicar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de gerenciamento de estado da aplicação
+        const GoonHotApp = {
+            // Dados da aplicação
+            currentUser: null,
+            users: [],
+            posts: [],
+            stories: [],
+            messages: {},
+            following: [],
+            suggestions: [],
+            
+            // Inicializar aplicação
+            init: function() {
+                this.loadDataFromStorage();
+                this.setupEventListeners();
+                this.checkLoginStatus();
+            },
+            
+            // Carregar dados do localStorage
+            loadDataFromStorage: function() {
+                // Tenta carregar dados existentes
+                const savedUsers = localStorage.getItem('goonhot_users');
+                const savedPosts = localStorage.getItem('goonhot_posts');
+                const savedStories = localStorage.getItem('goonhot_stories');
+                const savedMessages = localStorage.getItem('goonhot_messages');
+                const savedCurrentUser = localStorage.getItem('goonhot_current_user');
+                const savedFollowing = localStorage.getItem('goonhot_following');
+                
+                if (savedUsers) this.users = JSON.parse(savedUsers);
+                if (savedPosts) this.posts = JSON.parse(savedPosts);
+                if (savedStories) this.stories = JSON.parse(savedStories);
+                if (savedMessages) this.messages = JSON.parse(savedMessages);
+                if (savedCurrentUser) this.currentUser = JSON.parse(savedCurrentUser);
+                if (savedFollowing) this.following = JSON.parse(savedFollowing);
+                
+                // Se não houver dados, criar dados de exemplo
+                if (this.users.length === 0) {
+                    this.createSampleData();
+                }
+            },
+            
+            // Salvar dados no localStorage
+            saveDataToStorage: function() {
+                localStorage.setItem('goonhot_users', JSON.stringify(this.users));
+                localStorage.setItem('goonhot_posts', JSON.stringify(this.posts));
+                localStorage.setItem('goonhot_stories', JSON.stringify(this.stories));
+                localStorage.setItem('goonhot_messages', JSON.stringify(this.messages));
+                if (this.currentUser) {
+                    localStorage.setItem('goonhot_current_user', JSON.stringify(this.currentUser));
+                }
+                localStorage.setItem('goonhot_following', JSON.stringify(this.following));
+            },
+            
+            // Criar dados de exemplo
+            createSampleData: function() {
+                // Usuários de exemplo
+                this.users = [
+                    {
+                        id: 1,
+                        name: "Maria Silva",
+                        username: "maria_silva",
+                        email: "maria@email.com",
+                        password: "123456",
+                        followers: 125000, // Mais de 100k - verificado
+                        following: 245,
+                        posts: 42,
+                        verified: true,
+                        initials: "MS",
+                        avatarColor: "#ff6b6b"
+                    },
+                    {
+                        id: 2,
+                        name: "Carlos Santos",
+                        username: "carlos_2023",
+                        email: "carlos@email.com",
+                        password: "123456",
+                        followers: 45200,
+                        following: 312,
+                        posts: 18,
+                        verified: false,
+                        initials: "CS",
+                        avatarColor: "#4ecdc4"
+                    },
+                    {
+                        id: 3,
+                        name: "Ana Julia",
+                        username: "anajulia",
+                        email: "ana@email.com",
+                        password: "123456",
+                        followers: 89200,
+                        following: 189,
+                        posts: 31,
+                        verified: false,
+                        initials: "AJ",
+                        avatarColor: "#ffd166"
+                    },
+                    {
+                        id: 4,
+                        name: "Pedro Gamer",
+                        username: "pedro_gamer",
+                        email: "pedro@email.com",
+                        password: "123456",
+                        followers: 215000, // Mais de 100k - verificado
+                        following: 567,
+                        posts: 87,
+                        verified: true,
+                        initials: "PG",
+                        avatarColor: "#06d6a0"
+                    },
+                    {
+                        id: 5,
+                        name: "Luiz Rocha",
+                        username: "luizrocha",
+                        email: "luiz@email.com",
+                        password: "123456",
+                        followers: 35600,
+                        following: 421,
+                        posts: 22,
+                        verified: false,
+                        initials: "LR",
+                        avatarColor: "#118ab2"
+                    }
+                ];
+                
+                // Posts de exemplo
+                this.posts = [
+                    {
+                        id: 1,
+                        userId: 1,
+                        username: "maria_silva",
+                        userInitials: "MS",
+                        userVerified: true,
+                        caption: "Adorei este lugar! Natureza incrível 🌿 #viagem #natureza #goonhot",
+                        mediaType: "image",
+                        mediaUrl: "https://images.unsplash.com/photo-1682687982501-1e58ab814714?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        likes: 1245,
+                        likedByUser: false,
+                        comments: [
+                            { userId: 4, username: "pedro_gamer", userInitials: "PG", text: "Que lugar incrível! 😍", time: "1h" },
+                            { userId: 2, username: "carlos_2023", userInitials: "CS", text: "Maravilhoso! Onde é isso?", time: "2h" }
+                        ],
+                        tags: ["viagem", "natureza", "goonhot"],
+                        timestamp: "2023-11-05T10:30:00"
+                    },
+                    {
+                        id: 2,
+                        userId: 4,
+                        username: "pedro_gamer",
+                        userInitials: "PG",
+                        userVerified: true,
+                        caption: "Novo setup completo! Finalmente consegui montar o PC dos sonhos 🎮💻 #gamer #setup #tecnologia",
+                        mediaType: "image",
+                        mediaUrl: "https://images.unsplash.com/photo-1690046793094-1237b8c09433?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                        likes: 2578,
+                        likedByUser: true,
+                        comments: [
+                            { userId: 1, username: "maria_silva", userInitials: "MS", text: "Uau, que setup incrível! 😮", time: "3h" },
+                            { userId: 3, username: "anajulia", userInitials: "AJ", text: "Quanto custou tudo isso? 🤔", time: "4h" }
+                        ],
+                        tags: ["gamer", "setup", "tecnologia"],
+                        timestamp: "2023-11-04T15:45:00"
+                    },
+                    {
+                        id: 3,
+                        userId: 3,
+                        username: "anajulia",
+                        userInitials: "AJ",
+                        userVerified: false,
+                        caption: "Meu primeiro vídeo no GoonHot! Espero que gostem 😊 #primeirovideo #conteúdo #goonhot",
+                        mediaType: "video",
+                        mediaUrl: "https://assets.mixkit.co/videos/preview/mixkit-tree-with-yellow-flowers-1173-large.mp4",
+                        likes: 892,
+                        likedByUser: false,
+                        comments: [
+                            { userId: 4, username: "pedro_gamer", userInitials: "PG", text: "Muito bom! Parabéns 👏", time: "5h" }
+                        ],
+                        tags: ["primeirovideo", "conteúdo", "goonhot"],
+                        timestamp: "2023-11-03T12:15:00"
+                    }
+                ];
+                
+                // Stories de exemplo
+                this.stories = [
+                    { userId: 1, username: "maria_silva", userInitials: "MS", seen: false },
+                    { userId: 2, username: "carlos_2023", userInitials: "CS", seen: false },
+                    { userId: 3, username: "anajulia", userInitials: "AJ", seen: true },
+                    { userId: 4, username: "pedro_gamer", userInitials: "PG", seen: false },
+                    { userId: 5, username: "luizrocha", userInitials: "LR", seen: true }
+                ];
+                
+                // Mensagens de exemplo
+                this.messages = {
+                    "1_4": [ // Maria e Pedro
+                        { senderId: 1, text: "Oi Pedro, tudo bem?", time: "10:30", sent: true },
+                        { senderId: 4, text: "Tudo sim Maria! E você?", time: "10:32", sent: false },
+                        { senderId: 1, text: "Tudo ótimo! Vamos marcar aquela viagem?", time: "10:35", sent: true },
+                        { senderId: 4, text: "Claro! Estou super animado 😊", time: "10:40", sent: false }
+                    ],
+                    "1_2": [ // Maria e Carlos
+                        { senderId: 2, text: "Oi Maria, viu o novo vídeo que postei?", time: "09:15", sent: false },
+                        { senderId: 1, text: "Ainda não, vou ver agora!", time: "09:20", sent: true }
+                    ]
+                };
+                
+                // Usuário atual de exemplo (não logado ainda)
+                this.currentUser = null;
+                
+                // Seguindo de exemplo
+                this.following = [1, 4]; // IDs dos usuários que o usuário atual segue
+                
+                this.saveDataToStorage();
+            },
+            
+            // Verificar status de login
+            checkLoginStatus: function() {
+                if (this.currentUser) {
+                    this.showApp();
+                } else {
+                    this.showLogin();
+                }
+            },
+            
+            // Mostrar tela de login
+            showLogin: function() {
+                document.getElementById('login-page').classList.remove('hidden');
+                document.getElementById('app').classList.add('hidden');
+            },
+            
+            // Mostrar aplicação
+            showApp: function() {
+                document.getElementById('login-page').classList.add('hidden');
+                document.getElementById('app').classList.remove('hidden');
+                this.updateUI();
+            },
+            
+            // Atualizar interface do usuário
+            updateUI: function() {
+                if (!this.currentUser) return;
+                
+                // Atualizar informações do usuário
+                document.getElementById('user-initials').textContent = this.currentUser.initials;
+                document.getElementById('user-initials-sidebar').textContent = this.currentUser.initials;
+                document.getElementById('username-sidebar').textContent = this.currentUser.username;
+                document.getElementById('fullname-sidebar').textContent = this.currentUser.name;
+                
+                // Verificar se o usuário é verificado (mais de 100k seguidores)
+                const isVerified = this.currentUser.followers >= 100000;
+                this.currentUser.verified = isVerified;
+                
+                // Atualizar selo de verificado
+                const verifiedElements = [
+                    document.getElementById('user-verified-badge'),
+                    document.getElementById('user-verified-badge-sidebar'),
+                    document.getElementById('username-verified-badge')
+                ];
+                
+                verifiedElements.forEach(element => {
+                    if (isVerified) {
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                });
+                
+                // Atualizar estatísticas
+                document.getElementById('followers-count').textContent = this.formatNumber(this.currentUser.followers);
+                document.getElementById('following-count').textContent = this.currentUser.following;
+                document.getElementById('posts-count').textContent = this.currentUser.posts;
+                
+                // Carregar stories
+                this.loadStories();
+                
+                // Carregar feed
+                this.loadFeed();
+                
+                // Carregar sugestões
+                this.loadSuggestions();
+                
+                // Carregar chat
+                this.loadChatUsers();
+            },
+            
+            // Formatar números (ex: 1000 -> 1K)
+            formatNumber: function(num) {
+                if (num >= 1000000) {
+                    return (num / 1000000).toFixed(1) + 'M';
+                } else if (num >= 1000) {
+                    return (num / 1000).toFixed(1) + 'K';
+                }
+                return num.toString();
+            },
+            
+            // Carregar stories
+            loadStories: function() {
+                const storiesContainer = document.getElementById('stories-container');
+                storiesContainer.innerHTML = '';
+                
+                // Adicionar story do usuário atual
+                const myStory = document.createElement('div');
+                myStory.className = 'story add-story';
+                myStory.innerHTML = `
+                    <div class="story-avatar">
+                        <div style="background-color: ${this.currentUser.avatarColor || '#f0f0f0'}; width: 100%; height: 100%; border-radius: 50%;"></div>
+                    </div>
+                    <i class="fas fa-plus"></i>
+                    <span class="story-username">Seu story</span>
+                `;
+                storiesContainer.appendChild(myStory);
+                
+                // Adicionar stories de outros usuários
+                this.stories.forEach(story => {
+                    if (story.userId === this.currentUser.id) return;
+                    
+                    const user = this.users.find(u => u.id === story.userId);
+                    if (!user) return;
+                    
+                    const storyElement = document.createElement('div');
+                    storyElement.className = 'story';
+                    storyElement.innerHTML = `
+                        <div class="story-avatar ${story.seen ? '' : 'unseen'}">
+                            <div style="background-color: ${user.avatarColor || '#f0f0f0'}; width: 100%; height: 100%; border-radius: 50%;"></div>
+                        </div>
+                        <span class="story-username">${user.username}</span>
+                    `;
+                    
+                    storyElement.addEventListener('click', () => {
+                        alert(`Vendo story de ${user.username}`);
+                        story.seen = true;
+                        this.saveDataToStorage();
+                        this.loadStories();
+                    });
+                    
+                    storiesContainer.appendChild(storyElement);
+                });
+            },
+            
+            // Carregar feed
+            loadFeed: function() {
+                const feedContainer = document.getElementById('feed-container');
+                feedContainer.innerHTML = '';
+                
+                // Ordenar posts por data (mais recente primeiro)
+                const sortedPosts = [...this.posts].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                sortedPosts.forEach(post => {
+                    const user = this.users.find(u => u.id === post.userId);
+                    if (!user) return;
+                    
+                    const postElement = document.createElement('div');
+                    postElement.className = 'post';
+                    postElement.dataset.postId = post.id;
+                    
+                    // Calcular tempo relativo
+                    const timeAgo = this.getTimeAgo(post.timestamp);
+                    
+                    // Verificar se o usuário atual curtiu o post
+                    const likedClass = post.likedByUser ? 'fas liked' : 'far';
+                    
+                    // Gerar HTML dos comentários
+                    let commentsHTML = '';
+                    if (post.comments && post.comments.length > 0) {
+                        post.comments.slice(0, 2).forEach(comment => {
+                            const commentUser = this.users.find(u => u.id === comment.userId);
+                            if (!commentUser) return;
+                            
+                            commentsHTML += `
+                                <div class="comment">
+                                    <div class="comment-avatar" style="background-color: ${commentUser.avatarColor || '#f0f0f0'}">${commentUser.initials}</div>
+                                    <div class="comment-content">
+                                        <div class="comment-author">
+                                            ${commentUser.username}
+                                            ${commentUser.verified ? '<div class="verified-badge" style="width: 12px; height: 12px; font-size: 0.5rem;"><i class="fas fa-check"></i></div>' : ''}
+                                        </div>
+                                        <div class="comment-text">${comment.text}</div>
+                                        <div class="comment-time">${comment.time}</div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        
+                        if (post.comments.length > 2) {
+                            commentsHTML += `<div class="post-comments" data-post-id="${post.id}">Ver todos os ${post.comments.length} comentários</div>`;
+                        }
+                    }
+                    
+                    postElement.innerHTML = `
+                        <div class="post-header">
+                            <div class="post-user">
+                                <div class="post-user-avatar" style="background-color: ${user.avatarColor || '#f0f0f0'}">
+                                    ${user.initials}
+                                    ${user.verified ? '<div class="verified-badge"><i class="fas fa-check"></i></div>' : ''}
+                                </div>
+                                <div class="post-user-info">
+                                    <h4>
+                                        ${user.username}
+                                        ${user.verified ? '<div class="verified-badge"><i class="fas fa-check"></i></div>' : ''}
+                                    </h4>
+                                    <p>${user.name} • ${timeAgo}</p>
+                                </div>
+                            </div>
+                            <div class="post-menu">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="post-content">
+                            ${post.mediaType === 'video' ? 
+                                `<video class="post-media" controls>
+                                    <source src="${post.mediaUrl}" type="video/mp4">
+                                </video>
+                                <div class="video-overlay">
+                                    <i class="fas fa-play"></i> Vídeo
+                                </div>` : 
+                                `<img src="${post.mediaUrl}" alt="Post" class="post-media">`
+                            }
+                        </div>
+                        
+                        <div class="post-actions">
+                            <div class="post-actions-left">
+                                <i class="${likedClass} fa-heart" data-post-id="${post.id}"></i>
+                                <i class="far fa-comment" data-post-id="${post.id}"></i>
+                                <i class="far fa-paper-plane"></i>
+                            </div>
+                            <i class="far fa-bookmark"></i>
+                        </div>
+                        
+                        <div class="post-info">
+                            <div class="post-likes">${this.formatNumber(post.likes)} curtidas</div>
+                            <div class="post-caption">
+                                <strong>${user.username}</strong> ${post.caption}
+                            </div>
+                            ${commentsHTML ? `<div class="comments-section">${commentsHTML}</div>` : ''}
+                            <div class="post-time">${timeAgo.toUpperCase()}</div>
+                        </div>
+                        
+                        <div class="add-comment">
+                            <input type="text" placeholder="Adicione um comentário..." data-post-id="${post.id}">
+                            <button data-post-id="${post.id}">Publicar</button>
+                        </div>
+                    `;
+                    
+                    feedContainer.appendChild(postElement);
+                });
+                
+                // Adicionar event listeners para interações
+                this.setupPostInteractions();
+            },
+            
+            // Carregar sugestões
+            loadSuggestions: function() {
+                const suggestionsContainer = document.getElementById('suggestions-container');
+                suggestionsContainer.innerHTML = '';
+                
+                // Filtrar usuários que não são o atual e que não estão sendo seguidos
+                const notFollowing = this.users.filter(user => 
+                    user.id !== this.currentUser.id && 
+                    !this.following.includes(user.id)
+                );
+                
+                // Pegar 3 sugestões aleatórias
+                const suggestions = notFollowing
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 3);
+                
+                suggestions.forEach(user => {
+                    const suggestionElement = document.createElement('div');
+                    suggestionElement.className = 'suggestion';
+                    suggestionElement.innerHTML = `
+                        <div class="suggestion-user">
+                            <div class="suggestion-avatar" style="background-color: ${user.avatarColor || '#f0f0f0'}">
+                                ${user.initials}
+                                ${user.verified ? '<div class="verified-badge"><i class="fas fa-check"></i></div>' : ''}
+                            </div>
+                            <div class="suggestion-info">
+                                <h4>
+                                    ${user.username}
+                                    ${user.verified ? '<div class="verified-badge" style="width: 12px; height: 12px; font-size: 0.5rem;"><i class="fas fa-check"></i></div>' : ''}
+                                </h4>
+                                <p>${this.formatNumber(user.followers)} seguidores</p>
+                            </div>
+                        </div>
+                        <button class="follow-btn" data-user-id="${user.id}">Seguir</button>
+                    `;
+                    
+                    suggestionsContainer.appendChild(suggestionElement);
+                });
+                
+                // Adicionar event listeners para botões de seguir
+                document.querySelectorAll('.follow-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const userId = parseInt(e.target.dataset.userId);
+                        this.followUser(userId);
+                    });
+                });
+            },
+            
+            // Carregar usuários do chat
+            loadChatUsers: function() {
+                const chatUsersContainer = document.getElementById('chat-users');
+                chatUsersContainer.innerHTML = '';
+                
+                // Encontrar usuários com quem o usuário atual tem conversas
+                const chatUserIds = new Set();
+                
+                // Verificar todas as chaves de mensagens
+                Object.keys(this.messages).forEach(key => {
+                    const [id1, id2] = key.split('_').map(Number);
+                    
+                    if (id1 === this.currentUser.id) {
+                        chatUserIds.add(id2);
+                    } else if (id2 === this.currentUser.id) {
+                        chatUserIds.add(id1);
+                    }
+                });
+                
+                // Adicionar usuários seguidos que não têm conversas ainda
+                this.following.forEach(userId => {
+                    if (userId !== this.currentUser.id) {
+                        chatUserIds.add(userId);
+                    }
+                });
+                
+                // Converter para array e obter objetos de usuário
+                const chatUsersArray = Array.from(chatUserIds)
+                    .map(userId => this.users.find(u => u.id === userId))
+                    .filter(user => user)
+                    .slice(0, 5); // Limitar a 5 usuários
+                
+                // Adicionar usuários ao chat
+                chatUsersArray.forEach(user => {
+                    // Verificar se há mensagens não lidas
+                    const chatKey = this.getChatKey(this.currentUser.id, user.id);
+                    const messages = this.messages[chatKey] || [];
+                    const lastMessage = messages.length > 0 ? messages[messages.length - 1] : null;
+                    
+                    const chatUserElement = document.createElement('div');
+                    chatUserElement.className = 'chat-user';
+                    chatUserElement.dataset.userId = user.id;
+                    chatUserElement.innerHTML = `
+                        <div class="chat-user-avatar" style="background-color: ${user.avatarColor || '#f0f0f0'}">
+                            ${user.initials}
+                            ${user.verified ? '<div class="verified-badge"><i class="fas fa-check"></i></div>' : ''}
+                        </div>
+                        <div class="chat-user-info">
+                            <h4>
+                                ${user.username}
+                                ${user.verified ? '<div class="verified-badge" style="width: 12px; height: 12px; font-size: 0.5rem;"><i class="fas fa-check"></i></div>' : ''}
+                            </h4>
+                            <p>${lastMessage ? lastMessage.text : 'Sem mensagens ainda'}</p>
+                        </div>
+                        <div class="chat-status ${lastMessage && lastMessage.senderId !== this.currentUser.id && !lastMessage.read ? '' : 'chat-offline'}"></div>
+                    `;
+                    
+                    chatUserElement.addEventListener('click', () => {
+                        this.openChat(user.id);
+                    });
+                    
+                    chatUsersContainer.appendChild(chatUserElement);
+                });
+            },
+            
+            // Abrir chat com um usuário
+            openChat: function(userId) {
+                const user = this.users.find(u => u.id === userId);
+                if (!user) return;
+                
+                // Esconder lista de usuários do chat
+                document.getElementById('chat-users').classList.add('hidden');
+                
+                // Mostrar área de mensagens
+                document.getElementById('chat-messages').classList.remove('hidden');
+                document.getElementById('chat-input').classList.remove('hidden');
+                
+                // Atualizar título do chat
+                document.querySelector('.chat-header h3').textContent = user.username;
+                
+                // Carregar mensagens
+                this.loadChatMessages(userId);
+                
+                // Configurar envio de mensagens
+                const sendButton = document.getElementById('send-message-btn');
+                const messageInput = document.getElementById('message-input');
+                
+                const sendMessage = () => {
+                    const text = messageInput.value.trim();
+                    if (text) {
+                        this.sendMessage(userId, text);
+                        messageInput.value = '';
+                        this.loadChatMessages(userId);
+                    }
+                };
+                
+                sendButton.onclick = sendMessage;
+                messageInput.onkeypress = (e) => {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                };
+                
+                // Adicionar botão para voltar
+                const backButton = document.createElement('i');
+                backButton.className = 'fas fa-arrow-left';
+                backButton.style.cursor = 'pointer';
+                backButton.style.marginRight = '10px';
+                backButton.addEventListener('click', () => {
+                    document.getElementById('chat-users').classList.remove('hidden');
+                    document.getElementById('chat-messages').classList.add('hidden');
+                    document.getElementById('chat-input').classList.add('hidden');
+                    document.querySelector('.chat-header h3').textContent = 'Mensagens';
+                    backButton.remove();
+                });
+                
+                document.querySelector('.chat-header').insertBefore(backButton, document.querySelector('.chat-header h3'));
+            },
+            
+            // Carregar mensagens do chat
+            loadChatMessages: function(userId) {
+                const messagesContainer = document.getElementById('chat-messages');
+                messagesContainer.innerHTML = '';
+                
+                const chatKey = this.getChatKey(this.currentUser.id, userId);
+                const messages = this.messages[chatKey] || [];
+                
+                messages.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    messageElement.className = `message ${message.senderId === this.currentUser.id ? 'message-sent' : 'message-received'}`;
+                    
+                    const sender = this.users.find(u => u.id === message.senderId);
+                    if (!sender) return;
+                    
+                    messageElement.innerHTML = `
+                        ${message.senderId !== this.currentUser.id ? `<div class="message-sender">${sender.username}</div>` : ''}
+                        <div class="message-text">${message.text}</div>
+                        <div class="message-time">${message.time}</div>
+                    `;
+                    
+                    messagesContainer.appendChild(messageElement);
+                });
+                
+                // Rolagem para baixo
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            },
+            
+            // Enviar mensagem
+            sendMessage: function(receiverId, text) {
+                const chatKey = this.getChatKey(this.currentUser.id, receiverId);
+                
+                if (!this.messages[chatKey]) {
+                    this.messages[chatKey] = [];
+                }
+                
+                const now = new Date();
+                const timeString = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                
+                this.messages[chatKey].push({
+                    senderId: this.currentUser.id,
+                    text: text,
+                    time: timeString,
+                    sent: true
+                });
+                
+                this.saveDataToStorage();
+            },
+            
+            // Obter chave do chat
+            getChatKey: function(id1, id2) {
+                return [id1, id2].sort((a, b) => a - b).join('_');
+            },
+            
+            // Seguir usuário
+            followUser: function(userId) {
+                if (!this.following.includes(userId)) {
+                    this.following.push(userId);
+                    
+                    // Atualizar contador de seguidores do usuário seguido
+                    const user = this.users.find(u => u.id === userId);
+                    if (user) {
+                        user.followers += 1;
+                        
+                        // Verificar se agora tem mais de 100k seguidores
+                        if (user.followers >= 100000) {
+                            user.verified = true;
+                        }
+                    }
+                    
+                    // Atualizar contador de seguindo do usuário atual
+                    this.currentUser.following += 1;
+                    
+                    this.saveDataToStorage();
+                    this.updateUI();
+                    
+                    // Atualizar botão
+                    const followButton = document.querySelector(`.follow-btn[data-user-id="${userId}"]`);
+                    if (followButton) {
+                        followButton.textContent = 'Seguindo';
+                        followButton.classList.add('following');
+                    }
+                }
+            },
+            
+            // Curtir post
+            likePost: function(postId) {
+                const post = this.posts.find(p => p.id === postId);
+                if (!post) return;
+                
+                if (post.likedByUser) {
+                    post.likes -= 1;
+                    post.likedByUser = false;
+                } else {
+                    post.likes += 1;
+                    post.likedByUser = true;
+                }
+                
+                this.saveDataToStorage();
+                this.loadFeed();
+            },
+            
+            // Comentar em post
+            commentOnPost: function(postId, text) {
+                const post = this.posts.find(p => p.id === postId);
+                if (!post || !text.trim()) return;
+                
+                const now = new Date();
+                const hoursAgo = Math.floor(Math.random() * 5) + 1; // Simular tempo aleatório
+                
+                post.comments.push({
+                    userId: this.currentUser.id,
+                    username: this.currentUser.username,
+                    userInitials: this.currentUser.initials,
+                    text: text,
+                    time: `${hoursAgo}h`
+                });
+                
+                this.saveDataToStorage();
+                this.loadFeed();
+            },
+            
+            // Publicar novo post
+            publishPost: function(caption, tags, mediaType, mediaUrl) {
+                const newPost = {
+                    id: this.posts.length > 0 ? Math.max(...this.posts.map(p => p.id)) + 1 : 1,
+                    userId: this.currentUser.id,
+                    username: this.currentUser.username,
+                    userInitials: this.currentUser.initials,
+                    userVerified: this.currentUser.verified,
+                    caption: caption,
+                    mediaType: mediaType,
+                    mediaUrl: mediaUrl || 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                    likes: 0,
+                    likedByUser: false,
+                    comments: [],
+                    tags: tags ? tags.split(',').map(tag => tag.trim()) : [],
+                    timestamp: new Date().toISOString()
+                };
+                
+                this.posts.unshift(newPost);
+                this.currentUser.posts += 1;
+                
+                this.saveDataToStorage();
+                this.updateUI();
+            },
+            
+            // Login
+            login: function(email, password) {
+                const user = this.users.find(u => 
+                    (u.email === email || u.username === email) && u.password === password
+                );
+                
+                if (user) {
+                    this.currentUser = { ...user };
+                    this.showApp();
+                    return true;
+                }
+                
+                return false;
+            },
+            
+            // Registro
+            register: function(name, username, email, password) {
+                // Verificar se username ou email já existem
+                const usernameExists = this.users.some(u => u.username === username);
+                const emailExists = this.users.some(u => u.email === email);
+                
+                if (usernameExists || emailExists) {
+                    return { success: false, message: usernameExists ? 'Nome de usuário já existe' : 'E-mail já está em uso' };
+                }
+                
+                // Gerar ID
+                const newId = this.users.length > 0 ? Math.max(...this.users.map(u => u.id)) + 1 : 1;
+                
+                // Gerar iniciais
+                const initials = name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                
+                // Gerar cor aleatória para avatar
+                const colors = ['#ff6b6b', '#4ecdc4', '#ffd166', '#06d6a0', '#118ab2', '#9d4edd', '#ff9e00'];
+                const avatarColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Criar novo usuário
+                const newUser = {
+                    id: newId,
+                    name: name,
+                    username: username,
+                    email: email,
+                    password: password,
+                    followers: 0,
+                    following: 0,
+                    posts: 0,
+                    verified: false,
+                    initials: initials,
+                    avatarColor: avatarColor
+                };
+                
+                this.users.push(newUser);
+                this.currentUser = { ...newUser };
+                
+                this.saveDataToStorage();
+                this.showApp();
+                
+                return { success: true };
+            },
+            
+            // Logout
+            logout: function() {
+                this.currentUser = null;
+                localStorage.removeItem('goonhot_current_user');
+                this.showLogin();
+            },
+            
+            // Calcular tempo relativo
+            getTimeAgo: function(timestamp) {
+                const now = new Date();
+                const postDate = new Date(timestamp);
+                const diffMs = now - postDate;
+                const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+                
+                if (diffHours < 1) {
+                    const diffMinutes = Math.floor(diffMs / (1000 * 60));
+                    return `há ${diffMinutes} minutos`;
+                } else if (diffHours < 24) {
+                    return `há ${diffHours} horas`;
+                } else {
+                    const diffDays = Math.floor(diffHours / 24);
+                    return `há ${diffDays} dias`;
+                }
+            },
+            
+            // Configurar event listeners
+            setupEventListeners: function() {
+                // Login/Registro
+                document.getElementById('login-btn').addEventListener('click', () => {
+                    const email = document.getElementById('login-email').value;
+                    const password = document.getElementById('login-password').value;
+                    
+                    if (!email || !password) {
+                        this.showError('login-error', 'Por favor, preencha todos os campos');
+                        return;
+                    }
+                    
+                    if (this.login(email, password)) {
+                        this.showError('login-error', '');
+                    } else {
+                        this.showError('login-error', 'E-mail/senha incorretos');
+                    }
+                });
+                
+                document.getElementById('register-btn').addEventListener('click', () => {
+                    const name = document.getElementById('register-name').value;
+                    const username = document.getElementById('register-username').value;
+                    const email = document.getElementById('register-email').value;
+                    const password = document.getElementById('register-password').value;
+                    
+                    if (!name || !username || !email || !password) {
+                        this.showError('register-error', 'Por favor, preencha todos os campos');
+                        return;
+                    }
+                    
+                    const result = this.register(name, username, email, password);
+                    if (result.success) {
+                        this.showError('register-error', '');
+                    } else {
+                        this.showError('register-error', result.message);
+                    }
+                });
+                
+                // Alternar entre login e registro
+                document.getElementById('show-register').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('login-form').classList.add('hidden');
+                    document.getElementById('register-form').classList.remove('hidden');
+                });
+                
+                document.getElementById('show-login').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('register-form').classList.add('hidden');
+                    document.getElementById('login-form').classList.remove('hidden');
+                });
+                
+                // Upload de posts
+                document.getElementById('upload-toggle-btn').addEventListener('click', () => {
+                    document.getElementById('upload-modal').classList.remove('hidden');
+                });
+                
+                document.getElementById('close-upload-modal').addEventListener('click', () => {
+                    document.getElementById('upload-modal').classList.add('hidden');
+                    this.resetUploadForm();
+                });
+                
+                document.getElementById('cancel-upload').addEventListener('click', () => {
+                    document.getElementById('upload-modal').classList.add('hidden');
+                    this.resetUploadForm();
+                });
+                
+                // Preview de mídia
+                document.getElementById('media-file').addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    
+                    const preview = document.getElementById('upload-preview');
+                    const imagePreview = document.getElementById('image-preview');
+                    const videoPreview = document.getElementById('video-preview');
+                    const uploadIcon = preview.querySelector('.upload-icon');
+                    const uploadText = preview.querySelector('.upload-text');
+                    
+                    // Esconder ícone e texto
+                    uploadIcon.style.display = 'none';
+                    uploadText.style.display = 'none';
+                    
+                    // Verificar tipo de arquivo
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            imagePreview.src = e.target.result;
+                            imagePreview.style.display = 'block';
+                            videoPreview.style.display = 'none';
+                        };
+                        reader.readAsDataURL(file);
+                    } else if (file.type.startsWith('video/')) {
+                        const url = URL.createObjectURL(file);
+                        videoPreview.src = url;
+                        videoPreview.style.display = 'block';
+                        imagePreview.style.display = 'none';
+                    }
+                });
+                
+                // Publicar post
+                document.getElementById('upload-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    const caption = document.getElementById('post-caption-input').value;
+                    const tags = document.getElementById('post-tags').value;
+                    const fileInput = document.getElementById('media-file');
+                    
+                    // Determinar tipo de mídia
+                    let mediaType = 'image';
+                    if (fileInput.files.length > 0) {
+                        mediaType = fileInput.files[0].type.startsWith('video/') ? 'video' : 'image';
+                    }
+                    
+                    this.publishPost(caption, tags, mediaType);
+                    
+                    // Fechar modal e resetar formulário
+                    document.getElementById('upload-modal').classList.add('hidden');
+                    this.resetUploadForm();
+                });
+                
+                // Menu do perfil
+                document.getElementById('user-profile-header').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    document.getElementById('user-profile-menu').classList.toggle('active');
+                });
+                
+                // Fechar menu do perfil ao clicar fora
+                document.addEventListener('click', () => {
+                    document.getElementById('user-profile-menu').classList.remove('active');
+                });
+                
+                // Logout
+                document.getElementById('logout-link').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.logout();
+                });
+                
+                // Ver todas as sugestões
+                document.getElementById('see-all-suggestions').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('Em uma versão completa, esta funcionalidade carregaria mais sugestões.');
+                });
+                
+                // Novo chat
+                document.getElementById('new-chat-btn').addEventListener('click', () => {
+                    alert('Em uma versão completa, esta funcionalidade permitiria iniciar um novo chat.');
+                });
+            },
+            
+            // Configurar interações com posts
+            setupPostInteractions: function() {
+                // Curtir posts
+                document.querySelectorAll('.fa-heart').forEach(heart => {
+                    heart.addEventListener('click', (e) => {
+                        const postId = parseInt(e.target.dataset.postId);
+                        this.likePost(postId);
+                    });
+                });
+                
+                // Comentar em posts
+                document.querySelectorAll('.add-comment button').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const postId = parseInt(e.target.dataset.postId);
+                        const input = document.querySelector(`.add-comment input[data-post-id="${postId}"]`);
+                        const text = input.value;
+                        
+                        if (text.trim()) {
+                            this.commentOnPost(postId, text);
+                            input.value = '';
+                        }
+                    });
+                });
+                
+                // Enviar comentário com Enter
+                document.querySelectorAll('.add-comment input').forEach(input => {
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            const postId = parseInt(e.target.dataset.postId);
+                            const text = e.target.value;
+                            
+                            if (text.trim()) {
+                                this.commentOnPost(postId, text);
+                                e.target.value = '';
+                            }
+                        }
+                    });
+                });
+                
+                // Ver todos os comentários
+                document.querySelectorAll('.post-comments').forEach(commentLink => {
+                    commentLink.addEventListener('click', (e) => {
+                        const postId = parseInt(e.target.dataset.postId);
+                        const post = this.posts.find(p => p.id === postId);
+                        
+                        if (post && post.comments) {
+                            let commentsText = '';
+                            post.comments.forEach(comment => {
+                                commentsText += `${comment.username}: ${comment.text}\n`;
+                            });
+                            
+                            alert(`Todos os comentários:\n\n${commentsText}`);
+                        }
+                    });
+                });
+            },
+            
+            // Resetar formulário de upload
+            resetUploadForm: function() {
+                document.getElementById('upload-form').reset();
+                document.getElementById('image-preview').style.display = 'none';
+                document.getElementById('video-preview').style.display = 'none';
+                
+                const preview = document.getElementById('upload-preview');
+                const uploadIcon = preview.querySelector('.upload-icon');
+                const uploadText = preview.querySelector('.upload-text');
+                
+                uploadIcon.style.display = 'block';
+                uploadText.style.display = 'block';
+            },
+            
+            // Mostrar mensagem de erro
+            showError: function(elementId, message) {
+                const errorElement = document.getElementById(elementId);
+                errorElement.textContent = message;
+                errorElement.style.display = message ? 'block' : 'none';
+            }
+        };
+        
+        // Inicializar aplicação quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            GoonHotApp.init();
+        });
+    </script>
+</body>
+</html>
