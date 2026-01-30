@@ -32,32 +32,16 @@
             overflow-x: hidden;
         }
 
-        /* CORREÇÕES PARA HEADER E HAMBURGER */
-        header {
-            background: var(--primary-color);
-            color: white;
-            padding: 16px 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 998;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            min-height: 70px;
-        }
-
-        /* HAMBURGER MENU CORRIGIDO */
+        /* MENU HAMBURGER */
         .hamburger-menu {
-            position: absolute;
-            top: 4.4%;
+            position: fixed;
+            top: 33px;
             left: 20px;
-            transform: translateY(-50%);
             z-index: 1001;
             background: var(--primary-color);
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -69,13 +53,13 @@
         }
 
         .hamburger-menu:hover {
-            transform: translateY(-50%) scale(1.05);
+            transform: scale(1.05);
             background: var(--dark-gray);
             border-color: rgba(255, 255, 255, 0.2);
         }
 
         .hamburger-line {
-            width: 22px;
+            width: 24px;
             height: 2px;
             background: white;
             margin: 3px 0;
@@ -85,45 +69,6 @@
 
         .hamburger-menu:hover .hamburger-line {
             background: #f0f0f0;
-        }
-
-        /* CART ICON CORRIGIDO */
-        .cart-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 22px;
-            padding: 8px;
-            border-radius: 50%;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-        }
-
-        .cart-icon:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-50%) scale(1.05);
-        }
-
-        .cart-count {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--secondary-color);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
         }
 
         /* SIDEBAR MENU */
@@ -246,7 +191,20 @@
             text-align: center;
         }
 
-        /* LOGO */
+        /* HEADER PRINCIPAL */
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 998;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
         .logo-container {
             display: flex;
             align-items: center;
@@ -255,19 +213,49 @@
         }
 
         .logo-img {
-            height: 40px;
+            height: 90px;
             object-fit: contain;
             max-width: 200px;
         }
 
+        .cart-icon {
+            position: absolute;
+            right: 24px;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
         /* BANNER */
         .banner-container {
-            width: 100%;
+            width: 110%;
             overflow: hidden;
             position: relative;
             height: 500px;
             margin-bottom: 30px;
-            border-radius: 0;
         }
 
         @media (max-width: 768px) {
@@ -277,7 +265,7 @@
         }
 
         .banner-slide {
-            width: 100%;
+            width: 110%;
             height: 100%;
             position: absolute;
             top: 0;
@@ -317,26 +305,26 @@
 
         /* HOME SECTION */
         .home-section {
-            padding: 0 15px;
+            padding: 0 20px;
             max-width: 1200px;
-            margin: 0 auto 40px;
+            margin: 0 auto 50px;
         }
 
         .home-intro {
             text-align: center;
-            padding: 30px 15px;
-            margin-bottom: 30px;
+            padding: 40px 20px;
+            margin-bottom: 40px;
         }
 
         .home-intro h1 {
-            font-size: 28px;
-            margin-bottom: 15px;
+            font-size: 36px;
+            margin-bottom: 20px;
             color: var(--primary-color);
             text-align: center;
         }
 
         .home-intro p {
-            font-size: 16px;
+            font-size: 18px;
             color: #666;
             max-width: 800px;
             margin: 0 auto;
@@ -348,14 +336,13 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-            padding: 0 10px;
+            gap: 25px;
+            margin: 40px 0;
         }
 
         .feature-card {
             background: white;
-            padding: 25px 20px;
+            padding: 30px 25px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             transition: var(--transition);
@@ -364,7 +351,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 200px;
+            min-height: 220px;
         }
 
         .feature-card:hover {
@@ -373,28 +360,28 @@
         }
 
         .feature-icon {
-            font-size: 35px;
-            margin-bottom: 15px;
+            font-size: 40px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 65px;
-            height: 65px;
+            width: 70px;
+            height: 70px;
             background: var(--light-gray);
             border-radius: 50%;
         }
 
         .feature-card h3 {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             color: var(--primary-color);
-            font-size: 18px;
+            font-size: 20px;
             text-align: center;
         }
 
         .feature-card p {
             color: #666;
             line-height: 1.6;
-            font-size: 14px;
+            font-size: 15px;
             text-align: center;
         }
 
@@ -403,10 +390,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 30px 0 20px;
+            margin: 40px 0 25px;
             flex-wrap: wrap;
             gap: 15px;
-            padding: 0 10px;
         }
 
         .search-box {
@@ -417,10 +403,10 @@
 
         .search-input {
             width: 100%;
-            padding: 14px 20px 14px 45px;
+            padding: 12px 20px 12px 45px;
             border: 2px solid #e0e0e0;
             border-radius: var(--border-radius);
-            font-size: 15px;
+            font-size: 14px;
             transition: var(--transition);
             background: white;
         }
@@ -440,15 +426,13 @@
         }
 
         .sort-select {
-            padding: 14px 20px;
+            padding: 12px 20px;
             border: 2px solid #e0e0e0;
             border-radius: var(--border-radius);
-            font-size: 15px;
+            font-size: 14px;
             background: white;
             cursor: pointer;
             transition: var(--transition);
-            width: 100%;
-            max-width: 250px;
         }
 
         .sort-select:focus {
@@ -460,7 +444,7 @@
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 25px;
             padding: 10px;
             align-items: start;
         }
@@ -468,21 +452,21 @@
         @media (max-width: 1024px) {
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-                gap: 18px;
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-                gap: 15px;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 18px;
             }
         }
 
         @media (max-width: 480px) {
             .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
             }
         }
 
@@ -494,7 +478,7 @@
             position: relative;
             cursor: pointer;
             transition: var(--transition);
-            height: 380px;
+            height: 400px;
             box-shadow: var(--box-shadow);
             display: flex;
             flex-direction: column;
@@ -507,7 +491,7 @@
 
         .product-image-container {
             width: 100%;
-            height: 180px;
+            height: 200px;
             overflow: hidden;
             position: relative;
             flex-shrink: 0;
@@ -526,31 +510,31 @@
 
         .product-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            right: 12px;
             background: var(--secondary-color);
             color: white;
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
             font-weight: bold;
             z-index: 2;
         }
 
         .product-info {
-            padding: 15px 12px;
+            padding: 15px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
         .product-name {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             margin-bottom: 8px;
             color: var(--text-color);
             line-height: 1.4;
-            height: 40px;
+            height: 42px;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -559,12 +543,19 @@
         }
 
         .product-price {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             color: var(--primary-color);
             margin-bottom: 8px;
             text-align: center;
             flex-shrink: 0;
+        }
+
+        .product-price span {
+            font-size: 14px;
+            color: #666;
+            text-decoration: line-through;
+            margin-left: 5px;
         }
 
         /* STOCK INFO */
@@ -576,8 +567,6 @@
             font-weight: bold;
             margin-bottom: 12px;
             flex-shrink: 0;
-            text-align: center;
-            width: 100%;
         }
 
         .stock-high {
@@ -615,7 +604,7 @@
             border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
             transition: var(--transition);
             flex: 1;
             display: flex;
@@ -696,13 +685,859 @@
             }
         }
 
+        /* CARROSSEL */
+        .image-carousel {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .image-carousel {
+                height: 300px;
+            }
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .carousel-image {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .carousel-btn {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            pointer-events: all;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: var(--transition);
+        }
+
+        .carousel-indicator.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        .image-thumbnails {
+            display: flex;
+            gap: 10px;
+            margin: 15px;
+            padding: 10px;
+            overflow-x: auto;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .thumbnail {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .thumbnail:hover {
+            opacity: 0.8;
+            border-color: var(--primary-color);
+        }
+
+        /* DETALHES DO PRODUTO */
+        .product-details {
+            padding: 25px;
+        }
+
+        .product-details h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .product-details-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .product-description {
+            color: #555;
+            line-height: 1.7;
+            margin: 20px 0;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .product-specs {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .product-specs h4 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .spec-item i {
+            color: var(--primary-color);
+        }
+
+        /* BOTÃO FECHAR MODAL */
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: rotate(90deg);
+        }
+
+        /* CART MODAL */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            background: white;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-modal.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cart-close:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .empty-cart i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .quantity-btn {
+            width: 26px;
+            height: 26px;
+            border: none;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 13px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .remove-item:hover {
+            background: #ffebee;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 2px solid #f0f0f0;
+            background: #fafafa;
+        }
+
+        .cart-summary {
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .summary-row.total {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .checkout-button {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .checkout-button:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .clear-cart-btn {
+            width: 100%;
+            padding: 12px;
+            background: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .clear-cart-btn:hover {
+            background: #7f8c8d;
+        }
+
+        /* CHECKOUT MODAL */
+        .checkout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .checkout-modal.active {
+            display: flex;
+        }
+
+        .checkout-container {
+            background: white;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .checkout-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 16px 16px 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .checkout-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkout-close:hover {
+            transform: scale(1.1);
+        }
+
+        .checkout-form {
+            padding: 25px;
+        }
+
+        .checkout-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .checkout-form .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .checkout-form .form-group input,
+        .checkout-form .form-group textarea,
+        .checkout-form .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .checkout-form .form-group input:focus,
+        .checkout-form .form-group textarea:focus,
+        .checkout-form .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-form .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* SISTEMA DE CEP */
+        .cep-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .cep-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+        }
+        
+        .cep-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .calculate-frete-btn {
+            padding: 12px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        
+        .calculate-frete-btn:hover {
+            background: var(--dark-gray);
+        }
+        
+        .frete-loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+        
+        .frete-options {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            border: 2px solid #e0e0e0;
+        }
+        
+        .frete-option {
+            padding: 12px;
+            margin-bottom: 8px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .frete-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        .frete-option.selected {
+            border-color: var(--accent-color);
+            background: rgba(37, 211, 102, 0.05);
+        }
+        
+        .frete-option.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .frete-details {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+        }
+        
+        .cep-error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .cep-success {
+            color: #27ae60;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .cep-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #e8f6ef;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .change-cep-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-size: 13px;
+            text-decoration: underline;
+        }
+
+        /* MODAL DE CEP */
+        .cep-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2001;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .cep-modal.active {
+            display: flex;
+        }
+        
+        .cep-modal-content {
+            background: white;
+            border-radius: 16px;
+            max-width: 400px;
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        .cep-modal-content h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .cep-modal-content p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .payment-methods,
+        .delivery-options {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .payment-option,
+        .delivery-option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .payment-option:hover,
+        .delivery-option:hover {
+            border-color: var(--primary-color);
+        }
+
+        .payment-option.active,
+        .delivery-option.active {
+            border-color: var(--accent-color);
+            background: rgba(37, 211, 102, 0.05);
+        }
+
+        .payment-icon {
+            font-size: 20px;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+        }
+
+        .order-summary h4 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid #ddd;
+            color: var(--primary-color);
+        }
+
+        .submit-order-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .submit-order-btn:hover {
+            background: #1da851;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* NOTIFICAÇÃO */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            z-index: 9999;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            animation: slideInRight 0.3s ease, slideOutRight 0.3s ease 2.7s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 350px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .notification.success {
+            background: #27ae60;
+        }
+
+        .notification.error {
+            background: #e74c3c;
+        }
+
+        .notification.warning {
+            background: #f39c12;
+        }
+
+        .notification-icon {
+            font-size: 20px;
+        }
+
+        /* LOADING SPINNER */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         /* FOOTER */
         footer {
             background: var(--primary-color);
             color: white;
-            padding: 30px 15px;
+            padding: 40px 20px;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         .footer-content {
@@ -711,9 +1546,9 @@
         }
 
         .footer-logo {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-align: center;
         }
 
@@ -723,17 +1558,16 @@
 
         .footer-text {
             color: #bbb;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
-            line-height: 1.5;
         }
 
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 15px;
+            padding-top: 20px;
             color: #999;
             font-size: 14px;
             text-align: center;
@@ -743,7 +1577,6 @@
         @media (max-width: 768px) {
             header {
                 padding: 12px 16px;
-                min-height: 60px;
             }
 
             .logo-img {
@@ -752,20 +1585,14 @@
             }
 
             .hamburger-menu {
-                left: 16px;
-                width: 40px;
-                height: 40px;
-            }
-
-            .hamburger-line {
-                width: 20px;
+                top: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
             }
 
             .cart-icon {
                 right: 16px;
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
             }
 
             .sidebar-menu {
@@ -777,44 +1604,15 @@
             }
 
             .home-intro h1 {
-                font-size: 24px;
-            }
-
-            .home-intro p {
-                font-size: 15px;
-            }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .feature-card {
-                padding: 20px 15px;
-                min-height: 180px;
-            }
-
-            .feature-icon {
-                width: 55px;
-                height: 55px;
                 font-size: 28px;
             }
 
-            .product-card {
-                height: 350px;
+            .home-intro p {
+                font-size: 16px;
             }
 
-            .product-image-container {
-                height: 160px;
-            }
-
-            .product-name {
-                font-size: 13px;
-                height: 36px;
-            }
-
-            .product-price {
-                font-size: 15px;
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -826,11 +1624,6 @@
             .filters {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 12px;
-            }
-
-            .sort-select {
-                max-width: 100%;
             }
 
             .cart-modal {
@@ -838,99 +1631,27 @@
             }
 
             .sidebar-menu {
-                width: 85%;
+                width: 100%;
                 left: -100%;
             }
 
             .banner-container {
-                height: 220px;
+                height: 200px;
             }
 
             .feature-card {
-                padding: 18px 12px;
-                min-height: 160px;
+                padding: 20px 15px;
+                min-height: 200px;
             }
 
             .feature-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-
-            .feature-card h3 {
-                font-size: 16px;
-            }
-
-            .feature-card p {
-                font-size: 13px;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .product-card {
-                height: 320px;
-            }
-
-            .product-image-container {
-                height: 140px;
-            }
-
-            .product-buttons {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .product-btn {
-                padding: 10px;
-                font-size: 13px;
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
             }
 
             .cep-form {
                 flex-direction: column;
-            }
-
-            .calculate-frete-btn {
-                width: 100%;
-                margin-top: 8px;
-            }
-
-            .home-intro {
-                padding: 20px 10px;
-            }
-
-            .home-intro h1 {
-                font-size: 22px;
-            }
-
-            .home-intro p {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-                max-width: 280px;
-                margin: 0 auto;
-            }
-
-            .hamburger-menu {
-                left: 12px;
-                width: 38px;
-                height: 38px;
-            }
-
-            .cart-icon {
-                right: 12px;
-                width: 38px;
-                height: 38px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
             }
         }
 
@@ -954,44 +1675,123 @@
             background: #a8a8a8;
         }
 
-        /* MELHORIAS PARA MOBILE */
-        @media (max-width: 768px) {
-            .details-content,
-            .checkout-container,
-            .cep-modal-content {
-                -webkit-overflow-scrolling: touch;
-                overscroll-behavior: contain;
-            }
+        /* DARK MODE */
+        .dark-mode {
+            background: #121212;
+            color: #ffffff;
         }
 
-        /* CORREÇÃO PARA INPUTS NO iOS */
-        @media (max-width: 768px) {
-            input, 
-            textarea, 
-            select {
-                font-size: 16px !important;
-            }
-            
-            .search-input:focus,
-            .sort-select:focus {
-                font-size: 16px;
-            }
+        .dark-mode .home-section,
+        .dark-mode .feature-card,
+        .dark-mode .product-card,
+        .dark-mode .product-info,
+        .dark-mode .cart-modal,
+        .dark-mode .sidebar-menu,
+        .dark-mode .details-content,
+        .dark-mode .checkout-container {
+            background: #1e1e1e;
+            color: #ffffff;
         }
 
-        /* GARANTIR QUE O CONTEÚDO NÃO FIQUE ATRÁS DO HEADER */
-        .home-section {
-            padding-top: 10px;
+        .dark-mode .product-name,
+        .dark-mode .product-details h2,
+        .dark-mode .feature-card h3 {
+            color: #ffffff;
         }
 
-        /* PREVENIR SCROLL HORIZONTAL */
-        body {
-            width: 100%;
-            overflow-x: hidden;
+        .dark-mode .product-description,
+        .dark-mode .feature-card p,
+        .dark-mode .footer-text {
+            color: #b0b0b0;
         }
 
-        /* Resto do CSS permanece igual... */
-        /* [Todo o restante do CSS original que não foi alterado permanece igual] */
+        .dark-mode .search-input,
+        .dark-mode .sort-select,
+        .dark-mode .form-group input,
+        .dark-mode .form-group textarea {
+            background: #2d2d2d;
+            border-color: #444;
+            color: #ffffff;
+        }
 
+        .dark-mode .product-card:hover,
+        .dark-mode .feature-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode footer {
+            background: #0a0a0a;
+        }
+
+        .dark-mode .product-price {
+            color: #ffffff;
+        }
+
+        .dark-mode .details-btn {
+            background: #2d2d2d;
+            color: #ffffff;
+        }
+
+        .dark-mode .details-btn:hover {
+            background: #3d3d3d;
+        }
+
+        .dark-mode .product-specs {
+            background: #2d2d2d;
+        }
+
+        .dark-mode .stock-high {
+            background: #1b4332;
+            color: #52b788;
+        }
+
+        .dark-mode .stock-medium {
+            background: #5a4a00;
+            color: #f6c343;
+        }
+
+        .dark-mode .stock-low {
+            background: #5c1f1f;
+            color: #e57373;
+        }
+
+        .dark-mode .stock-out {
+            background: #3a3a3a;
+            color: #b0b0b0;
+        }
+
+        .dark-mode .hamburger-menu {
+            background: #2d2d2d;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .hamburger-menu:hover {
+            background: #3d3d3d;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-mode .cep-info {
+            background: #2d2d2d;
+        }
+
+        .dark-mode .frete-options {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .dark-mode .frete-option {
+            border-color: #444;
+            background: #333;
+        }
+
+        .dark-mode .frete-option:hover {
+            border-color: var(--primary-color);
+        }
+
+        .dark-mode .frete-option.selected {
+            border-color: var(--accent-color);
+            background: rgba(37, 211, 102, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -1229,6 +2029,247 @@
             { id: 'calca17', nome: 'Calça Tactel Jordan Pro', categoria: 'calcas', preco: 359.9, estoque: 7, imagem: 'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop', imagens: [], descricao: 'Tactel profissional para alto rendimento esportivo' },
             { id: 'calca18', nome: 'Calça Jeans Jordan Relaxed', categoria: 'calcas', preco: 329.9, estoque: 15, imagem: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop', imagens: [], descricao: 'Jeans relaxed fit para máximo conforto no dia a dia' }
         ];
+
+        // ============================================
+        // MAPEAMENTO COMPLETO DE CEPs POR ESTADO
+        // ============================================
+        const cepsPorEstado = {
+            '699': 'AC', '570': 'AL', '571': 'AL', '572': 'AL', '573': 'AL',
+            '689': 'AP', '690': 'AM', '691': 'AM', '692': 'AM', '694': 'AM',
+            '695': 'AM', '696': 'AM', '697': 'AM', '698': 'AM', '400': 'BA',
+            '401': 'BA', '402': 'BA', '403': 'BA', '404': 'BA', '405': 'BA',
+            '406': 'BA', '407': 'BA', '408': 'BA', '409': 'BA', '410': 'BA',
+            '411': 'BA', '412': 'BA', '413': 'BA', '414': 'BA', '415': 'BA',
+            '416': 'BA', '417': 'BA', '418': 'BA', '419': 'BA', '420': 'BA',
+            '421': 'BA', '422': 'BA', '423': 'BA', '424': 'BA', '425': 'BA',
+            '426': 'BA', '427': 'BA', '428': 'BA', '429': 'BA', '430': 'BA',
+            '431': 'BA', '432': 'BA', '433': 'BA', '434': 'BA', '435': 'BA',
+            '436': 'BA', '437': 'BA', '438': 'BA', '439': 'BA', '440': 'BA',
+            '441': 'BA', '442': 'BA', '443': 'BA', '444': 'BA', '445': 'BA',
+            '446': 'BA', '447': 'BA', '448': 'BA', '449': 'BA', '450': 'BA',
+            '451': 'BA', '452': 'BA', '453': 'BA', '454': 'BA', '455': 'BA',
+            '456': 'BA', '457': 'BA', '458': 'BA', '459': 'BA', '460': 'BA',
+            '461': 'BA', '462': 'BA', '463': 'BA', '464': 'BA', '465': 'BA',
+            '466': 'BA', '467': 'BA', '468': 'BA', '469': 'BA', '470': 'BA',
+            '471': 'BA', '472': 'BA', '473': 'BA', '474': 'BA', '475': 'BA',
+            '476': 'BA', '477': 'BA', '478': 'BA', '479': 'BA', '480': 'BA',
+            '481': 'BA', '482': 'BA', '483': 'BA', '484': 'BA', '485': 'BA',
+            '486': 'BA', '487': 'BA', '488': 'BA', '489': 'BA', '600': 'CE',
+            '601': 'CE', '602': 'CE', '603': 'CE', '604': 'CE', '605': 'CE',
+            '606': 'CE', '607': 'CE', '608': 'CE', '609': 'CE', '610': 'CE',
+            '611': 'CE', '612': 'CE', '613': 'CE', '614': 'CE', '615': 'CE',
+            '616': 'CE', '617': 'CE', '618': 'CE', '619': 'CE', '620': 'CE',
+            '621': 'CE', '622': 'CE', '623': 'CE', '624': 'CE', '625': 'CE',
+            '626': 'CE', '627': 'CE', '628': 'CE', '629': 'CE', '630': 'CE',
+            '631': 'CE', '632': 'CE', '633': 'CE', '634': 'CE', '635': 'CE',
+            '700': 'DF', '701': 'DF', '702': 'DF', '703': 'DF', '704': 'DF',
+            '705': 'DF', '706': 'DF', '707': 'DF', '708': 'DF', '709': 'DF',
+            '710': 'DF', '711': 'DF', '712': 'DF', '713': 'DF', '714': 'DF',
+            '715': 'DF', '716': 'DF', '717': 'DF', '718': 'DF', '719': 'DF',
+            '720': 'DF', '721': 'DF', '722': 'DF', '723': 'DF', '724': 'DF',
+            '725': 'DF', '726': 'DF', '727': 'DF', '728': 'DF', '729': 'DF',
+            '730': 'DF', '731': 'DF', '732': 'DF', '733': 'DF', '734': 'DF',
+            '735': 'DF', '736': 'DF', '290': 'ES', '291': 'ES', '292': 'ES',
+            '293': 'ES', '294': 'ES', '295': 'ES', '296': 'ES', '297': 'ES',
+            '298': 'ES', '299': 'ES', '728': 'GO', '729': 'GO', '737': 'GO',
+            '738': 'GO', '739': 'GO', '740': 'GO', '741': 'GO', '742': 'GO',
+            '743': 'GO', '744': 'GO', '745': 'GO', '746': 'GO', '747': 'GO',
+            '748': 'GO', '749': 'GO', '750': 'GO', '751': 'GO', '752': 'GO',
+            '753': 'GO', '754': 'GO', '755': 'GO', '756': 'GO', '757': 'GO',
+            '758': 'GO', '759': 'GO', '760': 'GO', '761': 'GO', '762': 'GO',
+            '763': 'GO', '764': 'GO', '765': 'GO', '766': 'GO', '767': 'GO',
+            '650': 'MA', '651': 'MA', '652': 'MA', '653': 'MA', '654': 'MA',
+            '655': 'MA', '656': 'MA', '657': 'MA', '658': 'MA', '659': 'MA',
+            '780': 'MT', '781': 'MT', '782': 'MT', '783': 'MT', '784': 'MT',
+            '785': 'MT', '786': 'MT', '787': 'MT', '788': 'MT', '790': 'MS',
+            '791': 'MS', '792': 'MS', '793': 'MS', '794': 'MS', '795': 'MS',
+            '796': 'MS', '797': 'MS', '798': 'MS', '799': 'MS', '300': 'MG',
+            '301': 'MG', '302': 'MG', '303': 'MG', '304': 'MG', '305': 'MG',
+            '306': 'MG', '307': 'MG', '308': 'MG', '309': 'MG', '310': 'MG',
+            '311': 'MG', '312': 'MG', '313': 'MG', '314': 'MG', '315': 'MG',
+            '316': 'MG', '317': 'MG', '318': 'MG', '319': 'MG', '320': 'MG',
+            '321': 'MG', '322': 'MG', '323': 'MG', '324': 'MG', '325': 'MG',
+            '326': 'MG', '327': 'MG', '328': 'MG', '329': 'MG', '330': 'MG',
+            '331': 'MG', '332': 'MG', '333': 'MG', '334': 'MG', '335': 'MG',
+            '336': 'MG', '337': 'MG', '338': 'MG', '339': 'MG', '340': 'MG',
+            '341': 'MG', '342': 'MG', '343': 'MG', '344': 'MG', '345': 'MG',
+            '346': 'MG', '347': 'MG', '348': 'MG', '349': 'MG', '350': 'MG',
+            '351': 'MG', '352': 'MG', '353': 'MG', '354': 'MG', '355': 'MG',
+            '356': 'MG', '357': 'MG', '358': 'MG', '359': 'MG', '360': 'MG',
+            '361': 'MG', '362': 'MG', '363': 'MG', '364': 'MG', '365': 'MG',
+            '366': 'MG', '367': 'MG', '368': 'MG', '369': 'MG', '370': 'MG',
+            '371': 'MG', '372': 'MG', '373': 'MG', '374': 'MG', '375': 'MG',
+            '376': 'MG', '377': 'MG', '378': 'MG', '379': 'MG', '380': 'MG',
+            '381': 'MG', '382': 'MG', '383': 'MG', '384': 'MG', '385': 'MG',
+            '386': 'MG', '387': 'MG', '388': 'MG', '389': 'MG', '660': 'PA',
+            '661': 'PA', '662': 'PA', '663': 'PA', '664': 'PA', '665': 'PA',
+            '666': 'PA', '667': 'PA', '668': 'PA', '669': 'PA', '670': 'PA',
+            '671': 'PA', '672': 'PA', '673': 'PA', '674': 'PA', '675': 'PA',
+            '676': 'PA', '677': 'PA', '678': 'PA', '679': 'PA', '680': 'PA',
+            '681': 'PA', '682': 'PA', '683': 'PA', '684': 'PA', '685': 'PA',
+            '686': 'PA', '687': 'PA', '688': 'PA', '580': 'PB', '581': 'PB',
+            '582': 'PB', '583': 'PB', '584': 'PB', '585': 'PB', '586': 'PB',
+            '587': 'PB', '588': 'PB', '589': 'PB', '800': 'PR', '801': 'PR',
+            '802': 'PR', '803': 'PR', '804': 'PR', '805': 'PR', '806': 'PR',
+            '807': 'PR', '808': 'PR', '809': 'PR', '810': 'PR', '811': 'PR',
+            '812': 'PR', '813': 'PR', '814': 'PR', '815': 'PR', '816': 'PR',
+            '817': 'PR', '818': 'PR', '819': 'PR', '820': 'PR', '821': 'PR',
+            '822': 'PR', '823': 'PR', '824': 'PR', '825': 'PR', '826': 'PR',
+            '827': 'PR', '828': 'PR', '829': 'PR', '830': 'PR', '831': 'PR',
+            '832': 'PR', '833': 'PR', '834': 'PR', '835': 'PR', '836': 'PR',
+            '837': 'PR', '838': 'PR', '839': 'PR', '840': 'PR', '841': 'PR',
+            '842': 'PR', '843': 'PR', '844': 'PR', '845': 'PR', '846': 'PR',
+            '847': 'PR', '848': 'PR', '849': 'PR', '850': 'PR', '851': 'PR',
+            '852': 'PR', '853': 'PR', '854': 'PR', '855': 'PR', '856': 'PR',
+            '857': 'PR', '858': 'PR', '859': 'PR', '860': 'PR', '861': 'PR',
+            '862': 'PR', '863': 'PR', '864': 'PR', '865': 'PR', '866': 'PR',
+            '867': 'PR', '868': 'PR', '869': 'PR', '870': 'PR', '871': 'PR',
+            '872': 'PR', '873': 'PR', '874': 'PR', '875': 'PR', '876': 'PR',
+            '877': 'PR', '878': 'PR', '879': 'PR', '500': 'PE', '501': 'PE',
+            '502': 'PE', '503': 'PE', '504': 'PE', '505': 'PE', '506': 'PE',
+            '507': 'PE', '508': 'PE', '509': 'PE', '510': 'PE', '511': 'PE',
+            '512': 'PE', '513': 'PE', '514': 'PE', '515': 'PE', '516': 'PE',
+            '517': 'PE', '518': 'PE', '519': 'PE', '520': 'PE', '521': 'PE',
+            '522': 'PE', '523': 'PE', '524': 'PE', '525': 'PE', '526': 'PE',
+            '527': 'PE', '528': 'PE', '529': 'PE', '530': 'PE', '531': 'PE',
+            '532': 'PE', '533': 'PE', '534': 'PE', '535': 'PE', '536': 'PE',
+            '537': 'PE', '538': 'PE', '539': 'PE', '540': 'PE', '541': 'PE',
+            '542': 'PE', '543': 'PE', '544': 'PE', '545': 'PE', '546': 'PE',
+            '547': 'PE', '548': 'PE', '549': 'PE', '550': 'PE', '551': 'PE',
+            '552': 'PE', '553': 'PE', '554': 'PE', '555': 'PE', '556': 'PE',
+            '557': 'PE', '558': 'PE', '559': 'PE', '560': 'PE', '561': 'PE',
+            '562': 'PE', '563': 'PE', '564': 'PE', '565': 'PE', '566': 'PE',
+            '567': 'PE', '568': 'PE', '569': 'PE', '640': 'PI', '641': 'PI',
+            '642': 'PI', '643': 'PI', '644': 'PI', '645': 'PI', '646': 'PI',
+            '647': 'PI', '648': 'PI', '649': 'PI', '200': 'RJ', '201': 'RJ',
+            '202': 'RJ', '203': 'RJ', '204': 'RJ', '205': 'RJ', '206': 'RJ',
+            '207': 'RJ', '208': 'RJ', '209': 'RJ', '210': 'RJ', '211': 'RJ',
+            '212': 'RJ', '213': 'RJ', '214': 'RJ', '215': 'RJ', '216': 'RJ',
+            '217': 'RJ', '218': 'RJ', '219': 'RJ', '220': 'RJ', '221': 'RJ',
+            '222': 'RJ', '223': 'RJ', '224': 'RJ', '225': 'RJ', '226': 'RJ',
+            '227': 'RJ', '228': 'RJ', '229': 'RJ', '230': 'RJ', '231': 'RJ',
+            '232': 'RJ', '233': 'RJ', '234': 'RJ', '235': 'RJ', '236': 'RJ',
+            '237': 'RJ', '238': 'RJ', '239': 'RJ', '240': 'RJ', '241': 'RJ',
+            '242': 'RJ', '243': 'RJ', '244': 'RJ', '245': 'RJ', '246': 'RJ',
+            '247': 'RJ', '248': 'RJ', '249': 'RJ', '250': 'RJ', '251': 'RJ',
+            '252': 'RJ', '253': 'RJ', '254': 'RJ', '255': 'RJ', '256': 'RJ',
+            '257': 'RJ', '258': 'RJ', '259': 'RJ', '260': 'RJ', '261': 'RJ',
+            '262': 'RJ', '263': 'RJ', '264': 'RJ', '265': 'RJ', '266': 'RJ',
+            '267': 'RJ', '268': 'RJ', '269': 'RJ', '270': 'RJ', '271': 'RJ',
+            '272': 'RJ', '273': 'RJ', '274': 'RJ', '275': 'RJ', '276': 'RJ',
+            '277': 'RJ', '278': 'RJ', '279': 'RJ', '280': 'RJ', '281': 'RJ',
+            '282': 'RJ', '283': 'RJ', '284': 'RJ', '285': 'RJ', '286': 'RJ',
+            '287': 'RJ', '288': 'RJ', '289': 'RJ', '590': 'RN', '591': 'RN',
+            '592': 'RN', '593': 'RN', '594': 'RN', '595': 'RN', '596': 'RN',
+            '597': 'RN', '598': 'RN', '599': 'RN', '900': 'RS', '901': 'RS',
+            '902': 'RS', '903': 'RS', '904': 'RS', '905': 'RS', '906': 'RS',
+            '907': 'RS', '908': 'RS', '909': 'RS', '910': 'RS', '911': 'RS',
+            '912': 'RS', '913': 'RS', '914': 'RS', '915': 'RS', '916': 'RS',
+            '917': 'RS', '918': 'RS', '919': 'RS', '920': 'RS', '921': 'RS',
+            '922': 'RS', '923': 'RS', '924': 'RS', '925': 'RS', '926': 'RS',
+            '927': 'RS', '928': 'RS', '929': 'RS', '930': 'RS', '931': 'RS',
+            '932': 'RS', '933': 'RS', '934': 'RS', '935': 'RS', '936': 'RS',
+            '937': 'RS', '938': 'RS', '939': 'RS', '940': 'RS', '941': 'RS',
+            '942': 'RS', '943': 'RS', '944': 'RS', '945': 'RS', '946': 'RS',
+            '947': 'RS', '948': 'RS', '949': 'RS', '950': 'RS', '951': 'RS',
+            '952': 'RS', '953': 'RS', '954': 'RS', '955': 'RS', '956': 'RS',
+            '957': 'RS', '958': 'RS', '959': 'RS', '960': 'RS', '961': 'RS',
+            '962': 'RS', '963': 'RS', '964': 'RS', '965': 'RS', '966': 'RS',
+            '967': 'RS', '968': 'RS', '969': 'RS', '970': 'RS', '971': 'RS',
+            '972': 'RS', '973': 'RS', '974': 'RS', '975': 'RS', '976': 'RS',
+            '977': 'RS', '978': 'RS', '979': 'RS', '980': 'RS', '981': 'RS',
+            '982': 'RS', '983': 'RS', '984': 'RS', '985': 'RS', '986': 'RS',
+            '987': 'RS', '988': 'RS', '989': 'RS', '990': 'RS', '991': 'RS',
+            '992': 'RS', '993': 'RS', '994': 'RS', '995': 'RS', '996': 'RS',
+            '997': 'RS', '998': 'RS', '999': 'RS', '768': 'RO', '769': 'RO',
+            '693': 'RR', '880': 'SC', '881': 'SC', '882': 'SC', '883': 'SC',
+            '884': 'SC', '885': 'SC', '886': 'SC', '887': 'SC', '888': 'SC',
+            '889': 'SC', '890': 'SC', '891': 'SC', '892': 'SC', '893': 'SC',
+            '894': 'SC', '895': 'SC', '896': 'SC', '897': 'SC', '898': 'SC',
+            '899': 'SC', '010': 'SP', '011': 'SP', '012': 'SP', '013': 'SP',
+            '014': 'SP', '015': 'SP', '016': 'SP', '017': 'SP', '018': 'SP',
+            '019': 'SP', '020': 'SP', '021': 'SP', '022': 'SP', '023': 'SP',
+            '024': 'SP', '025': 'SP', '026': 'SP', '027': 'SP', '028': 'SP',
+            '029': 'SP', '030': 'SP', '031': 'SP', '032': 'SP', '033': 'SP',
+            '034': 'SP', '035': 'SP', '036': 'SP', '037': 'SP', '038': 'SP',
+            '039': 'SP', '040': 'SP', '041': 'SP', '042': 'SP', '043': 'SP',
+            '044': 'SP', '045': 'SP', '046': 'SP', '047': 'SP', '048': 'SP',
+            '049': 'SP', '050': 'SP', '051': 'SP', '052': 'SP', '053': 'SP',
+            '054': 'SP', '055': 'SP', '056': 'SP', '057': 'SP', '058': 'SP',
+            '059': 'SP', '060': 'SP', '061': 'SP', '062': 'SP', '063': 'SP',
+            '064': 'SP', '065': 'SP', '066': 'SP', '067': 'SP', '068': 'SP',
+            '069': 'SP', '070': 'SP', '071': 'SP', '072': 'SP', '073': 'SP',
+            '074': 'SP', '075': 'SP', '076': 'SP', '077': 'SP', '078': 'SP',
+            '079': 'SP', '080': 'SP', '081': 'SP', '082': 'SP', '083': 'SP',
+            '084': 'SP', '085': 'SP', '086': 'SP', '087': 'SP', '088': 'SP',
+            '089': 'SP', '090': 'SP', '091': 'SP', '092': 'SP', '093': 'SP',
+            '094': 'SP', '095': 'SP', '096': 'SP', '097': 'SP', '098': 'SP',
+            '099': 'SP', '100': 'SP', '101': 'SP', '102': 'SP', '103': 'SP',
+            '104': 'SP', '105': 'SP', '106': 'SP', '107': 'SP', '108': 'SP',
+            '109': 'SP', '110': 'SP', '111': 'SP', '112': 'SP', '113': 'SP',
+            '114': 'SP', '115': 'SP', '116': 'SP', '117': 'SP', '118': 'SP',
+            '119': 'SP', '120': 'SP', '121': 'SP', '122': 'SP', '123': 'SP',
+            '124': 'SP', '125': 'SP', '126': 'SP', '127': 'SP', '128': 'SP',
+            '129': 'SP', '130': 'SP', '131': 'SP', '132': 'SP', '133': 'SP',
+            '134': 'SP', '135': 'SP', '136': 'SP', '137': 'SP', '138': 'SP',
+            '139': 'SP', '140': 'SP', '141': 'SP', '142': 'SP', '143': 'SP',
+            '144': 'SP', '145': 'SP', '146': 'SP', '147': 'SP', '148': 'SP',
+            '149': 'SP', '150': 'SP', '151': 'SP', '152': 'SP', '153': 'SP',
+            '154': 'SP', '155': 'SP', '156': 'SP', '157': 'SP', '158': 'SP',
+            '159': 'SP', '160': 'SP', '161': 'SP', '162': 'SP', '163': 'SP',
+            '164': 'SP', '165': 'SP', '166': 'SP', '167': 'SP', '168': 'SP',
+            '169': 'SP', '170': 'SP', '171': 'SP', '172': 'SP', '173': 'SP',
+            '174': 'SP', '175': 'SP', '176': 'SP', '177': 'SP', '178': 'SP',
+            '179': 'SP', '180': 'SP', '181': 'SP', '182': 'SP', '183': 'SP',
+            '184': 'SP', '185': 'SP', '186': 'SP', '187': 'SP', '188': 'SP',
+            '189': 'SP', '190': 'SP', '191': 'SP', '192': 'SP', '193': 'SP',
+            '194': 'SP', '195': 'SP', '196': 'SP', '197': 'SP', '198': 'SP',
+            '199': 'SP', '490': 'SE', '491': 'SE', '492': 'SE', '493': 'SE',
+            '494': 'SE', '495': 'SE', '496': 'SE', '497': 'SE', '498': 'SE',
+            '499': 'SE', '770': 'TO', '771': 'TO', '772': 'TO', '773': 'TO',
+            '774': 'TO', '775': 'TO', '776': 'TO', '777': 'TO', '778': 'TO',
+            '779': 'TO'
+        };
+
+        // Tabela de fretes por estado
+        const tabelaFrete = {
+            // Região Sul
+            'RS': { padrao: 12.90, expresso: 22.90 },
+            'SC': { padrao: 11.90, expresso: 21.90 },
+            'PR': { padrao: 10.90, expresso: 20.90 },
+            
+            // Região Sudeste
+            'SP': { padrao: 9.90, expresso: 19.90 },
+            'RJ': { padrao: 11.90, expresso: 21.90 },
+            'MG': { padrao: 12.90, expresso: 22.90 },
+            'ES': { padrao: 13.90, expresso: 23.90 },
+            
+            // Região Centro-Oeste
+            'DF': { padrao: 15.90, expresso: 25.90 },
+            'GO': { padrao: 14.90, expresso: 24.90 },
+            'MT': { padrao: 16.90, expresso: 26.90 },
+            'MS': { padrao: 15.90, expresso: 25.90 },
+            
+            // Região Nordeste
+            'BA': { padrao: 17.90, expresso: 27.90 },
+            'SE': { padrao: 18.90, expresso: 28.90 },
+            'AL': { padrao: 19.90, expresso: 29.90 },
+            'PE': { padrao: 20.90, expresso: 30.90 },
+            'PB': { padrao: 21.90, expresso: 31.90 },
+            'RN': { padrao: 22.90, expresso: 32.90 },
+            'CE': { padrao: 23.90, expresso: 33.90 },
+            'PI': { padrao: 22.90, expresso: 32.90 },
+            'MA': { padrao: 24.90, expresso: 34.90 },
+            
+            // Região Norte
+            'TO': { padrao: 25.90, expresso: 35.90 },
+            'PA': { padrao: 27.90, expresso: 37.90 },
+            'AP': { padrao: 29.90, expresso: 39.90 },
+            'AM': { padrao: 31.90, expresso: 41.90 },
+            'RR': { padrao: 33.90, expresso: 43.90 },
+            'AC': { padrao: 34.90, expresso: 44.90 },
+            'RO': { padrao: 26.90, expresso: 36.90 }
+        };
 
         // ============================================
         // VARIÁVEIS GLOBAIS
@@ -1722,6 +2763,454 @@
         }
 
         // ============================================
+        // SISTEMA DE CEP E FRETE
+        // ============================================
+        function formatCEP(cep) {
+            cep = cep.replace(/\D/g, '');
+            if (cep.length > 5) {
+                cep = cep.substring(0, 5) + '-' + cep.substring(5, 8);
+            }
+            return cep;
+        }
+
+        function isValidCEP(cep) {
+            const cepNumerico = cep.replace(/\D/g, '');
+            return cepNumerico.length === 8;
+        }
+
+        function getEstadoFromCEP(cep) {
+            cep = cep.replace(/\D/g, '');
+            const prefixo = cep.substring(0, 3);
+            return cepsPorEstado[prefixo] || null;
+        }
+
+        function getCidadeFromEstado(estado) {
+            const cidadesPorEstado = {
+                'AC': 'Rio Branco', 'AL': 'Maceió', 'AP': 'Macapá', 'AM': 'Manaus',
+                'BA': 'Salvador', 'CE': 'Fortaleza', 'DF': 'Brasília', 'ES': 'Vitória',
+                'GO': 'Goiânia', 'MA': 'São Luís', 'MT': 'Cuiabá', 'MS': 'Campo Grande',
+                'MG': 'Belo Horizonte', 'PA': 'Belém', 'PB': 'João Pessoa', 'PR': 'Curitiba',
+                'PE': 'Recife', 'PI': 'Teresina', 'RJ': 'Rio de Janeiro', 'RN': 'Natal',
+                'RS': 'Porto Alegre', 'RO': 'Porto Velho', 'RR': 'Boa Vista', 'SC': 'Florianópolis',
+                'SP': 'São Paulo', 'SE': 'Aracaju', 'TO': 'Palmas'
+            };
+            return cidadesPorEstado[estado] || 'Cidade Principal';
+        }
+
+        function getPrazoEntrega(estado, tipo) {
+            const prazosBase = {
+                'RS': { padrao: 4, expresso: 2 }, 'SC': { padrao: 3, expresso: 2 }, 'PR': { padrao: 3, expresso: 1 },
+                'SP': { padrao: 2, expresso: 1 }, 'RJ': { padrao: 3, expresso: 2 }, 'MG': { padrao: 4, expresso: 2 },
+                'ES': { padrao: 4, expresso: 2 }, 'DF': { padrao: 5, expresso: 3 }, 'GO': { padrao: 5, expresso: 3 },
+                'MT': { padrao: 6, expresso: 4 }, 'MS': { padrao: 5, expresso: 3 }, 'BA': { padrao: 6, expresso: 4 },
+                'SE': { padrao: 7, expresso: 5 }, 'AL': { padrao: 7, expresso: 5 }, 'PE': { padrao: 8, expresso: 6 },
+                'PB': { padrao: 8, expresso: 6 }, 'RN': { padrao: 9, expresso: 7 }, 'CE': { padrao: 9, expresso: 7 },
+                'PI': { padrao: 8, expresso: 6 }, 'MA': { padrao: 9, expresso: 7 }, 'TO': { padrao: 10, expresso: 7 },
+                'PA': { padrao: 12, expresso: 8 }, 'AP': { padrao: 14, expresso: 10 }, 'AM': { padrao: 15, expresso: 11 },
+                'RR': { padrao: 16, expresso: 12 }, 'AC': { padrao: 17, expresso: 13 }, 'RO': { padrao: 11, expresso: 8 }
+            };
+            return prazosBase[estado] ? prazosBase[estado][tipo] : (tipo === 'padrao' ? 7 : 4);
+        }
+
+        function calculateFrete(cep) {
+            cep = formatCEP(cep);
+            if (!isValidCEP(cep)) {
+                return { success: false, error: 'CEP inválido. Digite um CEP com 8 dígitos.' };
+            }
+            const estado = getEstadoFromCEP(cep);
+            if (!estado) {
+                return { success: false, error: 'CEP não encontrado ou fora da área de entrega.' };
+            }
+            if (!tabelaFrete[estado]) {
+                return { success: false, error: 'Não realizamos entregas para este estado.' };
+            }
+            const freteInfo = tabelaFrete[estado];
+            const cidade = getCidadeFromEstado(estado);
+            const prazoPadrao = getPrazoEntrega(estado, 'padrao');
+            const prazoExpresso = getPrazoEntrega(estado, 'expresso');
+            return {
+                success: true,
+                cep: cep,
+                estado: estado,
+                cidade: cidade,
+                fretes: [
+                    {
+                        tipo: 'padrao',
+                        nome: 'Entrega Padrão',
+                        valor: freteInfo.padrao,
+                        prazo: prazoPadrao,
+                        descricao: `Entrega em ${prazoPadrao} dias úteis`
+                    },
+                    {
+                        tipo: 'expresso',
+                        nome: 'Entrega Expressa',
+                        valor: freteInfo.expresso,
+                        prazo: prazoExpresso,
+                        descricao: `Entrega em ${prazoExpresso} dias úteis`
+                    }
+                ]
+            };
+        }
+
+        function showFreteOptions(resultado) {
+            clienteInfo.cep = resultado.cep;
+            clienteInfo.estado = resultado.estado;
+            clienteInfo.cidade = resultado.cidade;
+            clienteInfo.frete = resultado.fretes[0].valor;
+            clienteInfo.entrega = 'padrao';
+            saveClienteInfo();
+            const freteOptionsHTML = `
+        <div class="cep-info">
+            <div>
+                📍 <strong>${resultado.cidade} - ${resultado.estado}</strong><br>
+                <small>CEP: ${resultado.cep}</small>
+            </div>
+            <button class="change-cep-btn" onclick="openCepModal()">Alterar CEP</button>
+        </div>
+        <div class="frete-options" id="freteOptions">
+            <h4 style="margin-bottom: 15px; font-size: 16px;">🚚 Escolha a entrega:</h4>
+            ${resultado.fretes.map((frete, index) => `
+                <div class="frete-option ${index === 0 ? 'selected' : ''}" 
+                     onclick="selectFrete('${frete.tipo}', ${frete.valor}, ${index})">
+                    <div>
+                        <strong>${frete.nome}</strong>
+                        <div class="frete-details">${frete.descricao}</div>
+                    </div>
+                    <div style="font-weight: bold; font-size: 18px;">
+                        R$ ${frete.valor.toFixed(2).replace('.', ',')}
+                    </div>
+                </div>
+            `).join('')}
+        </div>`;
+            const checkoutForm = document.getElementById('checkoutForm');
+            if (checkoutForm) {
+                const existingFreteSection = document.getElementById('freteSection');
+                if (existingFreteSection) {
+                    existingFreteSection.innerHTML = freteOptionsHTML;
+                } else {
+                    const enderecoGroup = document.querySelector('.form-group label[for="endereco"]');
+                    if (enderecoGroup) {
+                        const div = document.createElement('div');
+                        div.id = 'freteSection';
+                        div.innerHTML = freteOptionsHTML;
+                        enderecoGroup.parentNode.parentNode.insertBefore(div, enderecoGroup.parentNode);
+                    }
+                }
+            }
+            freteCalculado = true;
+            updateOrderSummary();
+        }
+
+        function selectFrete(tipo, valor, index) {
+            clienteInfo.entrega = tipo;
+            clienteInfo.frete = valor;
+            document.querySelectorAll('.frete-option').forEach((option, i) => {
+                option.classList.toggle('selected', i === index);
+            });
+            updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+            const subtotal = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+            const total = subtotal + (freteCalculado ? clienteInfo.frete : 9.90);
+            const orderSummary = document.querySelector('.order-summary');
+            if (orderSummary) {
+                const freteItem = orderSummary.querySelector('.frete-item');
+                if (freteItem) {
+                    freteItem.innerHTML = `
+                        <span>Frete (${clienteInfo.entrega === 'expresso' ? 'Expressa' : 'Padrão'})</span>
+                        <span>R$ ${(freteCalculado ? clienteInfo.frete : 9.90).toFixed(2).replace('.', ',')}</span>
+                    `;
+                }
+                const totalElement = orderSummary.querySelector('.order-total span:last-child');
+                if (totalElement) {
+                    totalElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+                }
+            }
+        }
+
+        function openCepModal() {
+            document.getElementById('cepModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            const cepInput = document.getElementById('cepInputModal');
+            if (clienteInfo.cep) {
+                cepInput.value = clienteInfo.cep;
+            }
+            document.getElementById('cepErrorModal').style.display = 'none';
+        }
+
+        function closeCepModal() {
+            document.getElementById('cepModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function calculateFreteFromModal() {
+            const cepInput = document.getElementById('cepInputModal');
+            const cepError = document.getElementById('cepErrorModal');
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            const cep = cepInput.value.trim();
+            if (!isValidCEP(cep)) {
+                cepError.textContent = 'Digite um CEP válido com 8 dígitos';
+                cepError.style.display = 'block';
+                return;
+            }
+            btn.innerHTML = 'Calculando... <div class="frete-loading"></div>';
+            btn.disabled = true;
+            setTimeout(() => {
+                const resultado = calculateFrete(cep);
+                if (resultado.success) {
+                    closeCepModal();
+                    showFreteOptions(resultado);
+                    showNotification(`Frete calculado para ${resultado.cidade}-${resultado.estado}`, 'success');
+                } else {
+                    cepError.textContent = resultado.error;
+                    cepError.style.display = 'block';
+                }
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        function calculateFreteFromCheckout() {
+            const cepInput = document.getElementById('cepInputCheckout');
+            const cepError = document.getElementById('cepErrorCheckout');
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            const cep = cepInput.value.trim();
+            if (!isValidCEP(cep)) {
+                cepError.textContent = 'Digite um CEP válido com 8 dígitos';
+                cepError.style.display = 'block';
+                return;
+            }
+            btn.innerHTML = 'Calculando... <div class="frete-loading"></div>';
+            btn.disabled = true;
+            setTimeout(() => {
+                const resultado = calculateFrete(cep);
+                if (resultado.success) {
+                    showFreteOptions(resultado);
+                    showNotification(`Frete calculado para ${resultado.cidade}-${resultado.estado}`, 'success');
+                } else {
+                    cepError.textContent = resultado.error;
+                    cepError.style.display = 'block';
+                }
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 1500);
+        }
+
+        // ============================================
+        // CHECKOUT E FINALIZAÇÃO
+        // ============================================
+        function openCheckout() {
+            if (carrinho.length === 0) {
+                showNotification('Carrinho vazio! Adicione produtos primeiro.', 'warning');
+                return;
+            }
+            const modal = document.getElementById('checkoutModal');
+            const form = document.getElementById('checkoutForm');
+            const subtotal = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+            const freteAtual = freteCalculado ? clienteInfo.frete : 9.90;
+            const total = subtotal + freteAtual;
+            const freteSectionHTML = clienteInfo.cep ? `
+        <div id="freteSection">
+            <div class="cep-info">
+                <div>
+                    📍 <strong>${clienteInfo.cidade} - ${clienteInfo.estado}</strong><br>
+                    <small>CEP: ${clienteInfo.cep}</small>
+                </div>
+                <button class="change-cep-btn" onclick="openCepModal()">Alterar CEP</button>
+            </div>
+            <div class="frete-options" id="freteOptions">
+                <h4 style="margin-bottom: 15px; font-size: 16px;">🚚 Escolha a entrega:</h4>
+                <div class="frete-option ${clienteInfo.entrega === 'padrao' ? 'selected' : ''}" 
+                     onclick="selectFrete('padrao', ${tabelaFrete[clienteInfo.estado]?.padrao || 9.90}, 0)">
+                    <div>
+                        <strong>Entrega Padrão</strong>
+                        <div class="frete-details">Entrega em ${getPrazoEntrega(clienteInfo.estado, 'padrao')} dias úteis</div>
+                    </div>
+                    <div style="font-weight: bold; font-size: 18px;">
+                        R$ ${(tabelaFrete[clienteInfo.estado]?.padrao || 9.90).toFixed(2).replace('.', ',')}
+                    </div>
+                </div>
+                <div class="frete-option ${clienteInfo.entrega === 'expresso' ? 'selected' : ''}" 
+                     onclick="selectFrete('expresso', ${tabelaFrete[clienteInfo.estado]?.expresso || 19.90}, 1)">
+                    <div>
+                        <strong>Entrega Expressa</strong>
+                        <div class="frete-details">Entrega em ${getPrazoEntrega(clienteInfo.estado, 'expresso')} dias úteis</div>
+                    </div>
+                    <div style="font-weight: bold; font-size: 18px;">
+                        R$ ${(tabelaFrete[clienteInfo.estado]?.expresso || 19.90).toFixed(2).replace('.', ',')}
+                    </div>
+                </div>
+            </div>
+        </div>` : `
+        <div id="freteSection" style="margin-bottom: 20px;">
+            <div style="background: #fef9e7; padding: 15px; border-radius: 8px; text-align: center;">
+                <p style="margin: 0 0 10px 0;">
+                    📦 <strong>Calcule o frete para sua região</strong><br>
+                    <small>Informe seu CEP para ver o valor exato</small>
+                </p>
+                <div class="cep-form">
+                    <input type="text" id="cepInputCheckout" class="cep-input" placeholder="Digite seu CEP" maxlength="9">
+                    <button class="calculate-frete-btn" onclick="calculateFreteFromCheckout()">Calcular Frete</button>
+                </div>
+                <div id="cepErrorCheckout" class="cep-error"></div>
+            </div>
+        </div>`;
+            form.innerHTML = `
+        <div class="order-summary">
+            <h4>🛒 Resumo do Pedido</h4>
+            ${carrinho.map(item => `
+                <div class="order-item">
+                    <span>${item.quantidade}x ${item.nome}</span>
+                    <span>R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}</span>
+                </div>
+            `).join('')}
+            <div class="order-item">
+                <span>Subtotal</span>
+                <span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+            </div>
+            <div class="order-item frete-item">
+                <span>Frete</span>
+                <span>R$ ${freteAtual.toFixed(2).replace('.', ',')}</span>
+            </div>
+            <div class="order-total">
+                <span>TOTAL</span>
+                <span>R$ ${total.toFixed(2).replace('.', ',')}</span>
+            </div>
+        </div>
+        ${freteSectionHTML}
+        <div class="form-group">
+            <label for="nome">👤 Nome Completo *</label>
+            <input type="text" id="nome" value="${clienteInfo.nome}" placeholder="Digite seu nome completo" required>
+        </div>
+        <div class="form-group">
+            <label for="telefone">📱 Telefone/WhatsApp *</label>
+            <input type="tel" id="telefone" value="${clienteInfo.telefone}" placeholder="(00) 00000-0000" required>
+        </div>
+        <div class="form-group">
+            <label for="email">📧 E-mail</label>
+            <input type="email" id="email" value="${clienteInfo.email}" placeholder="seuemail@exemplo.com">
+        </div>
+        <div class="form-group">
+            <label for="endereco">🏠 Endereço de Entrega *</label>
+            <textarea id="endereco" placeholder="Rua, Número, Bairro, Cidade - Estado, CEP" required>${clienteInfo.endereco}</textarea>
+        </div>
+        <div class="form-group">
+            <label>💳 Forma de Pagamento *</label>
+            <div class="payment-methods">
+                <div class="payment-option active" onclick="selectPayment('pix')">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="payment-icon">🏦</div>
+                        <div>
+                            <strong>PIX</strong>
+                            <div style="font-size: 12px; color: #666;">Pagamento instantâneo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="observacoes">📝 Observações</label>
+            <textarea id="observacoes" placeholder="Observações sobre o pedido, ponto de referência, etc.">${clienteInfo.observacoes}</textarea>
+        </div>
+        <button class="submit-order-btn" onclick="sendWhatsAppOrder()">
+            📱 Enviar Pedido pelo WhatsApp
+        </button>
+        <p style="text-align: center; margin-top: 15px; color: #666; font-size: 13px;">
+            Após enviar o pedido, você será direcionado para o WhatsApp para finalizar a compra.
+        </p>`;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            toggleCart();
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function selectPayment(method) {
+            clienteInfo.pagamento = method;
+            document.querySelectorAll('.payment-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            event.target.closest('.payment-option').classList.add('active');
+        }
+
+        function sendWhatsAppOrder() {
+            clienteInfo.nome = document.getElementById('nome').value.trim();
+            clienteInfo.telefone = document.getElementById('telefone').value.trim();
+            clienteInfo.email = document.getElementById('email').value.trim();
+            clienteInfo.endereco = document.getElementById('endereco').value.trim();
+            clienteInfo.observacoes = document.getElementById('observacoes').value.trim();
+            if (!clienteInfo.nome || !clienteInfo.telefone || !clienteInfo.endereco) {
+                showNotification('Preencha todos os campos obrigatórios!', 'error');
+                return;
+            }
+            if (!freteCalculado && !clienteInfo.cep) {
+                showNotification('Por favor, calcule o frete informando seu CEP!', 'error');
+                openCepModal();
+                return;
+            }
+            const phoneRegex = /^(\d{10,11})|(\(\d{2}\)\s?\d{4,5}-\d{4})$/;
+            if (!phoneRegex.test(clienteInfo.telefone.replace(/\D/g, ''))) {
+                showNotification('Digite um telefone válido!', 'error');
+                return;
+            }
+            const subtotal = carrinho.reduce((sum, item) => sum + (item.preco * item.quantidade), 0);
+            const frete = freteCalculado ? clienteInfo.frete : 9.90;
+            const total = subtotal + frete;
+            let message = `*🛒 NOVO PEDIDO - Jordan Store*\n\n`;
+            message += `*Cliente:* ${clienteInfo.nome}\n`;
+            message += `*Telefone:* ${clienteInfo.telefone}\n`;
+            if (clienteInfo.email) message += `*E-mail:* ${clienteInfo.email}\n`;
+            message += `*Endereço:*\n${clienteInfo.endereco}\n`;
+            if (clienteInfo.cep) message += `*CEP:* ${clienteInfo.cep}\n`;
+            message += `*Cidade/UF:* ${clienteInfo.cidade || 'Não informado'}/${clienteInfo.estado || 'Não informado'}\n\n`;
+            message += `*Pagamento:* PIX\n`;
+            message += `*Entrega:* ${clienteInfo.entrega === 'expresso' ? 'Expressa' : 'Padrão'}\n`;
+            message += `*Frete:* R$ ${frete.toFixed(2).replace('.', ',')}\n\n`;
+            message += `*ITENS DO PEDIDO:*\n`;
+            carrinho.forEach(item => {
+                message += `• ${item.quantidade}x ${item.nome} - R$ ${(item.preco * item.quantidade).toFixed(2).replace('.', ',')}\n`;
+            });
+            message += `\n*RESUMO DE VALORES:*\n`;
+            message += `Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+            message += `Frete: R$ ${frete.toFixed(2).replace('.', ',')}\n`;
+            message += `*TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
+            if (clienteInfo.observacoes) {
+                message += `\n*Observações do cliente:*\n${clienteInfo.observacoes}\n`;
+            }
+            message += `\n📅 *Data do pedido:* ${new Date().toLocaleString('pt-BR')}`;
+            message += `\n🆔 *ID do pedido:* ${Date.now().toString(36).toUpperCase()}`;
+            carrinho.forEach(item => {
+                const produtoIndex = produtos.findIndex(p => p.id === item.id);
+                if (produtoIndex !== -1) {
+                    produtos[produtoIndex].estoque -= item.quantidade;
+                }
+            });
+            carrinho = [];
+            saveCart();
+            updateCartDisplay();
+            closeCheckout();
+            updateProductsDisplay();
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = '555181875780';
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+            showNotification('Pedido enviado com sucesso! Verifique o WhatsApp.', 'success');
+            clienteInfo = {
+                nome: '', telefone: '', email: '', endereco: '',
+                cep: clienteInfo.cep, cidade: clienteInfo.cidade, estado: clienteInfo.estado,
+                pagamento: 'pix', entrega: 'padrao', frete: freteCalculado ? clienteInfo.frete : 9.90,
+                observacoes: ''
+            };
+            saveClienteInfo();
+        }
+
+        // ============================================
         // MODAL DE DETALHES DO PRODUTO
         // ============================================
         function showProductDetails(productId) {
@@ -1801,10 +3290,23 @@
         }
 
         // ============================================
-        // FUNÇÕES RESTANTES (não alteradas)
+        // FIM DO CÓDIGO
         // ============================================
-        // [Todo o restante do JavaScript original permanece igual]
+        window.addEventListener('resize', function() {
+            updateProductsDisplay();
+        });
 
+        setTimeout(() => {
+            if (!document.getElementById('allProducts').innerHTML) {
+                updateProductsDisplay();
+            }
+        }, 100);
+
+        window.addEventListener('beforeunload', function(e) {
+            if (carrinho.length > 0) {
+                saveCart();
+            }
+        });
     </script>
 </body>
 </html>
