@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jordan Store - Loja Oficial de Roupas Jordan</title>
-    <meta name="description" content="Loja oficial de camisas e calças Jordan. Compre online com frete calculado por CEP e entrega para todo Brasil.">
+    <title>Jordan Store - Loja Oficial de Roupas e Tênis Jordan</title>
+    <meta name="description" content="Loja oficial de camisas, calças e tênis Jordan. Compre online com frete calculado por CEP e entrega para todo Brasil.">
     <style>
         :root {
             --primary-color: #000000;
@@ -440,37 +440,55 @@
             border-color: var(--primary-color);
         }
 
-        /* PRODUTOS */
+        /* PRODUTOS - CORRIGIDO PARA MOBILE */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 25px;
-            padding: 10px;
-            align-items: start;
+            padding: 15px;
+            align-items: stretch;
         }
 
         @media (max-width: 1024px) {
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-                gap: 20px;
+                grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+                gap: 22px;
             }
         }
 
         @media (max-width: 768px) {
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
                 gap: 18px;
+                padding: 10px;
             }
         }
 
         @media (max-width: 480px) {
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                padding: 8px;
             }
         }
 
-        /* PRODUCT CARD */
+        @media (max-width: 360px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+                padding: 6px;
+            }
+        }
+
+        /* PRODUCT CARD - CORRIGIDO PARA MOBILE */
         .product-card {
             background: white;
             border-radius: var(--border-radius);
@@ -526,6 +544,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
         .product-name {
@@ -539,7 +558,6 @@
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            flex-shrink: 0;
         }
 
         .product-price {
@@ -548,7 +566,6 @@
             color: var(--primary-color);
             margin-bottom: 8px;
             text-align: center;
-            flex-shrink: 0;
         }
 
         .product-price span {
@@ -1573,7 +1590,7 @@
             text-align: center;
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - MELHORIAS PARA MOBILE */
         @media (max-width: 768px) {
             header {
                 padding: 12px 16px;
@@ -1614,6 +1631,43 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* MELHORIAS PARA PRODUCT CARD NO MOBILE */
+            .product-card {
+                height: auto;
+                min-height: 380px;
+            }
+            
+            .product-image-container {
+                height: 180px;
+            }
+            
+            .product-name {
+                font-size: 14px;
+                height: 36px;
+                -webkit-line-clamp: 2;
+            }
+            
+            .product-price {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+            
+            .stock-info {
+                font-size: 10px;
+                padding: 3px 8px;
+                margin-bottom: 10px;
+            }
+            
+            .product-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .product-btn {
+                font-size: 12px;
+                padding: 8px;
+                min-height: 36px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1652,6 +1706,36 @@
 
             .cep-form {
                 flex-direction: column;
+            }
+
+            /* MELHORIAS ADICIONAIS PARA MOBILE PEQUENO */
+            .product-card {
+                min-height: 340px;
+            }
+            
+            .product-image-container {
+                height: 150px;
+            }
+            
+            .product-info {
+                padding: 12px;
+            }
+            
+            .product-name {
+                font-size: 13px;
+                height: 32px;
+                margin-bottom: 6px;
+            }
+            
+            .product-price {
+                font-size: 15px;
+            }
+            
+            .product-badge {
+                font-size: 9px;
+                padding: 3px 8px;
+                top: 8px;
+                right: 8px;
             }
         }
 
@@ -1817,8 +1901,20 @@
                     <span class="sidebar-icon">🏠</span>
                     <span>Início</span>
                 </a>
-                <a class="sidebar-item" onclick="navigateTo('products')">
+                <a class="sidebar-item" onclick="navigateTo('camisas')">
                     <span class="sidebar-icon">👕</span>
+                    <span>Camisas Jordan</span>
+                </a>
+                <a class="sidebar-item" onclick="navigateTo('calcas')">
+                    <span class="sidebar-icon">👖</span>
+                    <span>Calças Jordan</span>
+                </a>
+                <a class="sidebar-item" onclick="navigateTo('tenis')">
+                    <span class="sidebar-icon">👟</span>
+                    <span>Tênis Jordan</span>
+                </a>
+                <a class="sidebar-item" onclick="navigateTo('todos')">
+                    <span class="sidebar-icon">🛍️</span>
                     <span>Todos os Produtos</span>
                 </a>
             </nav>
@@ -1886,7 +1982,7 @@
                 <input type="text" class="search-input" id="searchInput" placeholder="Buscar produtos..." oninput="searchProducts()">
             </div>
             <select class="sort-select" id="sortSelect" onchange="sortProducts()">
-                <option value="default">Ordenar por: Padrão</option>
+                <option value="default">Ordenar por: Padrão (Categoria)</option>
                 <option value="price-asc">Preço: Menor para Maior</option>
                 <option value="price-desc">Preço: Maior para Menor</option>
                 <option value="name-asc">Nome: A-Z</option>
@@ -1904,7 +2000,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">Jordan<span>Store</span></div>
-            <p class="footer-text">Loja oficial de roupas Jordan. Oferecemos as melhores camisas e calças com qualidade premium e estilo inigualável. Entrega para todo Brasil.</p>
+            <p class="footer-text">Loja oficial de roupas e tênis Jordan. Oferecemos as melhores camisas, calças e tênis com qualidade premium e estilo inigualável. Entrega para todo Brasil.</p>
             <div class="footer-bottom">
                 &copy; 2024 Jordan Store. Todos os direitos reservados. | 📱 WhatsApp: (51) 8187-5780
             </div>
@@ -1986,7 +2082,7 @@
 
     <script>
         // ============================================
-        // DADOS DOS PRODUTOS (37 PRODUTOS)
+        // DADOS DOS PRODUTOS (54 PRODUTOS - 18 camisas, 18 calças, 18 tênis)
         // ============================================
         const produtos = [
             // CAMISAS (18 produtos)
@@ -2027,7 +2123,27 @@
             { id: 'calca15', nome: 'Calça Cargo Jordan Military', categoria: 'calcas', preco: 349.9, estoque: 13, imagem: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop', imagens: [], descricao: 'Cargo estilo militar com múltiplos bolsos funcionais' },
             { id: 'calca16', nome: 'Calça Sarja Jordan Regular', categoria: 'calcas', preco: 289.9, estoque: 19, imagem: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop', imagens: [], descricao: 'Sarja regular fit para uso casual e confortável' },
             { id: 'calca17', nome: 'Calça Tactel Jordan Pro', categoria: 'calcas', preco: 359.9, estoque: 7, imagem: 'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop', imagens: [], descricao: 'Tactel profissional para alto rendimento esportivo' },
-            { id: 'calca18', nome: 'Calça Jeans Jordan Relaxed', categoria: 'calcas', preco: 329.9, estoque: 15, imagem: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop', imagens: [], descricao: 'Jeans relaxed fit para máximo conforto no dia a dia' }
+            { id: 'calca18', nome: 'Calça Jeans Jordan Relaxed', categoria: 'calcas', preco: 329.9, estoque: 15, imagem: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop', imagens: [], descricao: 'Jeans relaxed fit para máximo conforto no dia a dia' },
+
+            // TÊNIS JORDAN (18 produtos)
+            { id: 'tenis1', nome: 'Air Jordan 1 Retro High OG', categoria: 'tenis', preco: 1299.9, estoque: 8, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Clássico absoluto, edição original com design icônico' },
+            { id: 'tenis2', nome: 'Air Jordan 4 Retro "Bred"', categoria: 'tenis', preco: 1499.9, estoque: 5, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Edição Black/Red, uma das mais desejadas da linha' },
+            { id: 'tenis3', nome: 'Air Jordan 11 Retro "Concord"', categoria: 'tenis', preco: 1399.9, estoque: 7, imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop', imagens: [], descricao: 'Design elegante com sola de gel e detalhes em patent leather' },
+            { id: 'tenis4', nome: 'Air Jordan 3 Retro "White Cement"', categoria: 'tenis', preco: 1199.9, estoque: 10, imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop', imagens: [], descricao: 'Primeiro modelo assinado por Tinker Hatfield' },
+            { id: 'tenis5', nome: 'Air Jordan 6 Retro "Infrared"', categoria: 'tenis', preco: 1249.9, estoque: 6, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Modelo usado por MJ na primeira conquista do título da NBA' },
+            { id: 'tenis6', nome: 'Air Jordan 12 Retro "Flu Game"', categoria: 'tenis', preco: 1349.9, estoque: 9, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Famoso "Flu Game", edição histórica' },
+            { id: 'tenis7', nome: 'Air Jordan 5 Retro "Grape"', categoria: 'tenis', preco: 1149.9, estoque: 12, imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop', imagens: [], descricao: 'Clássico grape com detalhes em roxo e verde' },
+            { id: 'tenis8', nome: 'Air Jordan 13 Retro "He Got Game"', categoria: 'tenis', preco: 1299.9, estoque: 8, imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop', imagens: [], descricao: 'Inspirado no filme "He Got Game", design futurista' },
+            { id: 'tenis9', nome: 'Air Jordan 1 Mid "Chicago"', categoria: 'tenis', preco: 899.9, estoque: 15, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Versão Mid do clássico Chicago, mais acessível' },
+            { id: 'tenis10', nome: 'Jordan Why Not Zer0.4', categoria: 'tenis', preco: 799.9, estoque: 20, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Assinatura de Russell Westbrook, design agressivo' },
+            { id: 'tenis11', nome: 'Air Jordan 34 Low', categoria: 'tenis', preco: 1199.9, estoque: 11, imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop', imagens: [], descricao: 'Tecnologia Eclipse Plate, máximo desempenho' },
+            { id: 'tenis12', nome: 'Jordan Delta 2', categoria: 'tenis', preco: 699.9, estoque: 18, imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop', imagens: [], descricao: 'Conforto premium para o dia a dia' },
+            { id: 'tenis13', nome: 'Air Jordan 1 Low OG', categoria: 'tenis', preco: 849.9, estoque: 14, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Versão low do clássico, perfeita para casual' },
+            { id: 'tenis14', nome: 'Jordan React Elevation', categoria: 'tenis', preco: 749.9, estoque: 16, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Tecnologia React para máximo conforto' },
+            { id: 'tenis15', nome: 'Air Jordan 7 Retro "Hare"', categoria: 'tenis', preco: 1249.9, estoque: 7, imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop', imagens: [], descricao: 'Edição especial inspirada no personagem Bugs Bunny' },
+            { id: 'tenis16', nome: 'Jordan Proto-React', categoria: 'tenis', preco: 599.9, estoque: 22, imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop', imagens: [], descricao: 'Design moderno com amortecimento React' },
+            { id: 'tenis17', nome: 'Air Jordan 8 Retro "Playoffs"', categoria: 'tenis', preco: 1299.9, estoque: 6, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Modelo usado por MJ nos playoffs de 1993' },
+            { id: 'tenis18', nome: 'Jordan Max 200', categoria: 'tenis', preco: 549.9, estoque: 25, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Conforto Air Max a preço acessível' }
         ];
 
         // ============================================
@@ -2369,19 +2485,52 @@
         }
 
         function navigateTo(section) {
-            if (section === 'products') {
+            let productsToShow = [];
+            
+            switch(section) {
+                case 'home':
+                    // Ordenação padrão: camisas, depois calças, depois tênis
+                    productsToShow = [...produtos].sort((a, b) => {
+                        const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
+                        return order[a.categoria] - order[b.categoria];
+                    });
+                    break;
+                case 'camisas':
+                    productsToShow = produtos.filter(p => p.categoria === 'camisas');
+                    break;
+                case 'calcas':
+                    productsToShow = produtos.filter(p => p.categoria === 'calcas');
+                    break;
+                case 'tenis':
+                    productsToShow = produtos.filter(p => p.categoria === 'tenis');
+                    break;
+                case 'todos':
+                    // Para "Todos os produtos", mantemos a ordenação por categoria
+                    productsToShow = [...produtos].sort((a, b) => {
+                        const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
+                        return order[a.categoria] - order[b.categoria];
+                    });
+                    break;
+                default:
+                    productsToShow = [...produtos].sort((a, b) => {
+                        const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
+                        return order[a.categoria] - order[b.categoria];
+                    });
+            }
+            
+            renderProducts(productsToShow);
+            updateSidebarActiveItem(section);
+            
+            // Rolagem suave para a seção de produtos
+            const filtersSection = document.querySelector('.filters');
+            if (filtersSection) {
                 window.scrollTo({
-                    top: document.querySelector('.filters').offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            } else {
-                window.scrollTo({
-                    top: 0,
+                    top: filtersSection.offsetTop - 100,
                     behavior: 'smooth'
                 });
             }
+            
             toggleSidebar();
-            updateSidebarActiveItem(section);
         }
 
         function updateSidebarActiveItem(section) {
@@ -2391,7 +2540,10 @@
             const items = document.querySelectorAll('.sidebar-item');
             switch (section) {
                 case 'home': items[0].classList.add('active'); break;
-                case 'products': items[1].classList.add('active'); break;
+                case 'camisas': items[1].classList.add('active'); break;
+                case 'calcas': items[2].classList.add('active'); break;
+                case 'tenis': items[3].classList.add('active'); break;
+                case 'todos': items[4].classList.add('active'); break;
             }
         }
 
@@ -2399,14 +2551,25 @@
         // RENDERIZAÇÃO DE PRODUTOS
         // ============================================
         function renderAllProducts() {
-            updateProductsDisplay();
+            // Ordenação padrão: camisas primeiro, depois calças, depois tênis
+            const sortedProducts = [...produtos].sort((a, b) => {
+                const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
+                return order[a.categoria] - order[b.categoria];
+            });
+            renderProducts(sortedProducts);
         }
 
-        function updateProductsDisplay() {
+        function renderProducts(productsToShow) {
             const container = document.getElementById('allProducts');
             if (!container) return;
+            
+            if (productsToShow.length === 0) {
+                container.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:40px; color:#666; font-size:18px;">Nenhum produto encontrado nesta categoria.</p>';
+                return;
+            }
+            
             let html = '';
-            produtos.forEach(produto => {
+            productsToShow.forEach(produto => {
                 const stockClass = getStockClass(produto.estoque);
                 const stockText = getStockText(produto.estoque);
                 html += `
@@ -2462,101 +2625,83 @@
         function searchProducts() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             const container = document.getElementById('allProducts');
+            
             if (searchTerm === '') {
-                updateProductsDisplay();
+                // Se a busca estiver vazia, voltar para a visualização padrão
+                if (currentSection === 'camisas') {
+                    navigateTo('camisas');
+                } else if (currentSection === 'calcas') {
+                    navigateTo('calcas');
+                } else if (currentSection === 'tenis') {
+                    navigateTo('tenis');
+                } else if (currentSection === 'todos') {
+                    navigateTo('todos');
+                } else {
+                    renderAllProducts();
+                }
                 return;
             }
+            
+            // Filtrar produtos de acordo com o termo de busca
             const filtered = produtos.filter(p =>
                 p.nome.toLowerCase().includes(searchTerm) ||
                 p.descricao.toLowerCase().includes(searchTerm) ||
                 p.categoria.toLowerCase().includes(searchTerm)
             );
-            let html = '';
-            if (filtered.length === 0) {
-                html = '<p style="grid-column:1/-1; text-align:center; padding:40px; color:#666; font-size:18px;">Nenhum produto encontrado. Tente outra busca.</p>';
-            } else {
-                filtered.forEach(produto => {
-                    const stockClass = getStockClass(produto.estoque);
-                    const stockText = getStockText(produto.estoque);
-                    html += `
-            <div class="product-card">
-                ${produto.estoque <= 3 && produto.estoque > 0 ? 
-                    `<div class="product-badge">ÚLTIMAS UNIDADES</div>` : 
-                    produto.estoque === 0 ? 
-                    `<div class="product-badge" style="background:#7f8c8d">ESGOTADO</div>` : ''}
-                <div class="product-image-container">
-                    <img src="${produto.imagem}" alt="${produto.nome}" class="product-image" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">${produto.nome}</h3>
-                    <div class="product-price">
-                        R$ ${produto.preco.toFixed(2).replace('.', ',')}
-                    </div>
-                    <div class="stock-info ${stockClass}">${stockText}</div>
-                    <div class="product-buttons">
-                        ${produto.estoque > 0 ? 
-                            `<button class="product-btn buy-btn" data-id="${produto.id}">
-                                🛒 Comprar
-                            </button>` :
-                            `<button class="product-btn disabled-btn" disabled>
-                                🔴 Esgotado
-                            </button>`}
-                        <button class="product-btn details-btn" data-id="${produto.id}">
-                            👀 Detalhes
-                        </button>
-                    </div>
-                </div>
-            </div>`;
-                });
-            }
-            container.innerHTML = html;
+            
+            renderProducts(filtered);
         }
 
         function sortProducts() {
             const sortBy = document.getElementById('sortSelect').value;
             const container = document.getElementById('allProducts');
-            let sortedProducts = [...produtos];
-            switch (sortBy) {
-                case 'price-asc': sortedProducts.sort((a, b) => a.preco - b.preco); break;
-                case 'price-desc': sortedProducts.sort((a, b) => b.preco - a.preco); break;
-                case 'name-asc': sortedProducts.sort((a, b) => a.nome.localeCompare(b.nome)); break;
-                case 'stock': sortedProducts.sort((a, b) => b.estoque - a.estoque); break;
+            
+            // Primeiro, determinar quais produtos estamos visualizando
+            let productsToSort = [];
+            if (currentSection === 'camisas') {
+                productsToSort = produtos.filter(p => p.categoria === 'camisas');
+            } else if (currentSection === 'calcas') {
+                productsToSort = produtos.filter(p => p.categoria === 'calcas');
+            } else if (currentSection === 'tenis') {
+                productsToSort = produtos.filter(p => p.categoria === 'tenis');
+            } else if (currentSection === 'todos') {
+                productsToSort = [...produtos];
+            } else {
+                productsToSort = [...produtos];
             }
-            let html = '';
-            sortedProducts.forEach(produto => {
-                const stockClass = getStockClass(produto.estoque);
-                const stockText = getStockText(produto.estoque);
-                html += `
-        <div class="product-card">
-            ${produto.estoque <= 3 && produto.estoque > 0 ? 
-                `<div class="product-badge">ÚLTIMAS UNIDADES</div>` : 
-                produto.estoque === 0 ? 
-                `<div class="product-badge" style="background:#7f8c8d">ESGOTADO</div>` : ''}
-            <div class="product-image-container">
-                <img src="${produto.imagem}" alt="${produto.nome}" class="product-image" loading="lazy">
-            </div>
-            <div class="product-info">
-                <h3 class="product-name">${produto.nome}</h3>
-                <div class="product-price">
-                    R$ ${produto.preco.toFixed(2).replace('.', ',')}
-                </div>
-                <div class="stock-info ${stockClass}">${stockText}</div>
-                <div class="product-buttons">
-                    ${produto.estoque > 0 ? 
-                        `<button class="product-btn buy-btn" data-id="${produto.id}">
-                            🛒 Comprar
-                        </button>` :
-                        `<button class="product-btn disabled-btn" disabled>
-                            🔴 Esgotado
-                        </button>`}
-                    <button class="product-btn details-btn" data-id="${produto.id}">
-                        👀 Detalhes
-                    </button>
-                </div>
-            </div>
-        </div>`;
-            });
-            container.innerHTML = html;
+            
+            let sortedProducts = [...productsToSort];
+            
+            switch (sortBy) {
+                case 'default':
+                    // Ordenação padrão por categoria: camisas, calças, tênis
+                    if (currentSection === 'todos' || currentSection === 'home') {
+                        sortedProducts.sort((a, b) => {
+                            const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
+                            return order[a.categoria] - order[b.categoria];
+                        });
+                    }
+                    // Se for uma categoria específica, mantém a ordem original
+                    break;
+                case 'price-asc': 
+                    sortedProducts.sort((a, b) => a.preco - b.preco); 
+                    break;
+                case 'price-desc': 
+                    sortedProducts.sort((a, b) => b.preco - a.preco); 
+                    break;
+                case 'name-asc': 
+                    sortedProducts.sort((a, b) => a.nome.localeCompare(b.nome)); 
+                    break;
+                case 'stock': 
+                    sortedProducts.sort((a, b) => b.estoque - a.estoque); 
+                    break;
+            }
+            
+            renderProducts(sortedProducts);
+        }
+
+        function updateProductsDisplay() {
+            renderAllProducts();
         }
 
         // ============================================
