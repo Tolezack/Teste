@@ -385,12 +385,53 @@
             text-align: center;
         }
 
+        /* TABS DE CATEGORIAS */
+        .categories-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 14px 28px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-color);
+        }
+
+        .tab-btn:hover {
+            background: #f8f9fa;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .tab-icon {
+            font-size: 20px;
+        }
+
         /* FILTROS */
         .filters {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 40px 0 25px;
+            margin: 25px 0;
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -1632,6 +1673,17 @@
                 grid-template-columns: 1fr;
             }
 
+            /* TABS PARA MOBILE */
+            .categories-tabs {
+                gap: 8px;
+                margin: 30px 0 20px;
+            }
+
+            .tab-btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
             /* MELHORIAS PARA PRODUCT CARD NO MOBILE */
             .product-card {
                 height: auto;
@@ -1702,6 +1754,20 @@
                 width: 60px;
                 height: 60px;
                 font-size: 30px;
+            }
+
+            /* TABS PARA MOBILE PEQUENO */
+            .categories-tabs {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                justify-content: flex-start;
+                white-space: nowrap;
+            }
+
+            .tab-btn {
+                flex-shrink: 0;
+                padding: 10px 16px;
             }
 
             .cep-form {
@@ -1901,21 +1967,21 @@
                     <span class="sidebar-icon">🏠</span>
                     <span>Início</span>
                 </a>
-                <a class="sidebar-item" onclick="navigateTo('camisas')">
+                <a class="sidebar-item" onclick="showAllProducts()">
                     <span class="sidebar-icon">👕</span>
-                    <span>Camisas Jordan</span>
-                </a>
-                <a class="sidebar-item" onclick="navigateTo('calcas')">
-                    <span class="sidebar-icon">👖</span>
-                    <span>Calças Jordan</span>
-                </a>
-                <a class="sidebar-item" onclick="navigateTo('tenis')">
-                    <span class="sidebar-icon">👟</span>
-                    <span>Tênis Jordan</span>
-                </a>
-                <a class="sidebar-item" onclick="navigateTo('todos')">
-                    <span class="sidebar-icon">🛍️</span>
                     <span>Todos os Produtos</span>
+                </a>
+                <a class="sidebar-item" onclick="filterByCategory('camisas')">
+                    <span class="sidebar-icon">👕</span>
+                    <span>Camisas</span>
+                </a>
+                <a class="sidebar-item" onclick="filterByCategory('calcas')">
+                    <span class="sidebar-icon">👖</span>
+                    <span>Calças</span>
+                </a>
+                <a class="sidebar-item" onclick="filterByCategory('tenis')">
+                    <span class="sidebar-icon">👟</span>
+                    <span>Tênis</span>
                 </a>
             </nav>
         </div>
@@ -1975,6 +2041,26 @@
             </div>
         </div>
 
+        <!-- TABS DE CATEGORIAS -->
+        <div class="categories-tabs" id="categoryTabs">
+            <button class="tab-btn active" onclick="filterByCategory('all')">
+                <span class="tab-icon">🏠</span>
+                <span>Todos</span>
+            </button>
+            <button class="tab-btn" onclick="filterByCategory('camisas')">
+                <span class="tab-icon">👕</span>
+                <span>Camisas</span>
+            </button>
+            <button class="tab-btn" onclick="filterByCategory('calcas')">
+                <span class="tab-icon">👖</span>
+                <span>Calças</span>
+            </button>
+            <button class="tab-btn" onclick="filterByCategory('tenis')">
+                <span class="tab-icon">👟</span>
+                <span>Tênis</span>
+            </button>
+        </div>
+
         <!-- FILTROS E PRODUTOS -->
         <div class="filters">
             <div class="search-box">
@@ -1982,7 +2068,7 @@
                 <input type="text" class="search-input" id="searchInput" placeholder="Buscar produtos..." oninput="searchProducts()">
             </div>
             <select class="sort-select" id="sortSelect" onchange="sortProducts()">
-                <option value="default">Ordenar por: Padrão (Categoria)</option>
+                <option value="default">Ordenar por: Padrão</option>
                 <option value="price-asc">Preço: Menor para Maior</option>
                 <option value="price-desc">Preço: Maior para Menor</option>
                 <option value="name-asc">Nome: A-Z</option>
@@ -2410,6 +2496,7 @@
         let bannerInterval;
         let currentSection = 'home';
         let freteCalculado = false;
+        let currentCategory = 'all';
 
         // ============================================
         // FUNÇÕES DE INICIALIZAÇÃO
@@ -2421,6 +2508,7 @@
             loadClienteInfo();
             setupEventListeners();
             updateCartDisplay();
+            setupCategoryTabs();
         });
 
         function loadClienteInfo() {
@@ -2468,6 +2556,16 @@
             });
         }
 
+        function setupCategoryTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    filterByCategory(category);
+                });
+            });
+        }
+
         // ============================================
         // FUNÇÕES DO MENU LATERAL
         // ============================================
@@ -2485,52 +2583,15 @@
         }
 
         function navigateTo(section) {
-            let productsToShow = [];
-            
-            switch(section) {
-                case 'home':
-                    // Ordenação padrão: camisas, depois calças, depois tênis
-                    productsToShow = [...produtos].sort((a, b) => {
-                        const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
-                        return order[a.categoria] - order[b.categoria];
-                    });
-                    break;
-                case 'camisas':
-                    productsToShow = produtos.filter(p => p.categoria === 'camisas');
-                    break;
-                case 'calcas':
-                    productsToShow = produtos.filter(p => p.categoria === 'calcas');
-                    break;
-                case 'tenis':
-                    productsToShow = produtos.filter(p => p.categoria === 'tenis');
-                    break;
-                case 'todos':
-                    // Para "Todos os produtos", mantemos a ordenação por categoria
-                    productsToShow = [...produtos].sort((a, b) => {
-                        const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
-                        return order[a.categoria] - order[b.categoria];
-                    });
-                    break;
-                default:
-                    productsToShow = [...produtos].sort((a, b) => {
-                        const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
-                        return order[a.categoria] - order[b.categoria];
-                    });
-            }
-            
-            renderProducts(productsToShow);
-            updateSidebarActiveItem(section);
-            
-            // Rolagem suave para a seção de produtos
-            const filtersSection = document.querySelector('.filters');
-            if (filtersSection) {
+            if (section === 'home') {
+                showAllProducts();
                 window.scrollTo({
-                    top: filtersSection.offsetTop - 100,
+                    top: 0,
                     behavior: 'smooth'
                 });
             }
-            
             toggleSidebar();
+            updateSidebarActiveItem(section);
         }
 
         function updateSidebarActiveItem(section) {
@@ -2540,23 +2601,78 @@
             const items = document.querySelectorAll('.sidebar-item');
             switch (section) {
                 case 'home': items[0].classList.add('active'); break;
-                case 'camisas': items[1].classList.add('active'); break;
-                case 'calcas': items[2].classList.add('active'); break;
-                case 'tenis': items[3].classList.add('active'); break;
-                case 'todos': items[4].classList.add('active'); break;
+                default: items[0].classList.add('active'); break;
             }
+        }
+
+        // ============================================
+        // SISTEMA DE TABS
+        // ============================================
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            // Atualizar tabs ativas
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                const btnCategory = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+                if (btnCategory === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Filtrar produtos
+            let filteredProducts;
+            if (category === 'all') {
+                filteredProducts = produtos;
+            } else {
+                filteredProducts = produtos.filter(p => p.categoria === category);
+            }
+            
+            // Atualizar título da seção
+            const sectionTitle = document.querySelector('.home-intro h1');
+            if (sectionTitle) {
+                switch(category) {
+                    case 'all':
+                        sectionTitle.textContent = 'Bem-vindo à Jordan Store';
+                        break;
+                    case 'camisas':
+                        sectionTitle.textContent = 'Camisas Jordan';
+                        break;
+                    case 'calcas':
+                        sectionTitle.textContent = 'Calças Jordan';
+                        break;
+                    case 'tenis':
+                        sectionTitle.textContent = 'Tênis Jordan';
+                        break;
+                }
+            }
+            
+            renderProducts(filteredProducts);
+            
+            // Scroll suave para a seção de produtos
+            const productsSection = document.querySelector('.filters');
+            if (productsSection) {
+                window.scrollTo({
+                    top: productsSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+            
+            toggleSidebar();
+        }
+
+        function showAllProducts() {
+            filterByCategory('all');
         }
 
         // ============================================
         // RENDERIZAÇÃO DE PRODUTOS
         // ============================================
         function renderAllProducts() {
-            // Ordenação padrão: camisas primeiro, depois calças, depois tênis
-            const sortedProducts = [...produtos].sort((a, b) => {
-                const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
-                return order[a.categoria] - order[b.categoria];
-            });
-            renderProducts(sortedProducts);
+            filterByCategory('all');
         }
 
         function renderProducts(productsToShow) {
@@ -2564,7 +2680,15 @@
             if (!container) return;
             
             if (productsToShow.length === 0) {
-                container.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:40px; color:#666; font-size:18px;">Nenhum produto encontrado nesta categoria.</p>';
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 60px; margin-bottom: 20px;">😔</div>
+                        <h3 style="margin-bottom: 10px; color: var(--text-color);">Nenhum produto encontrado</h3>
+                        <p style="color: #666; max-width: 400px; margin: 0 auto;">Não encontramos produtos nesta categoria no momento.</p>
+                        <button onclick="filterByCategory('all')" style="margin-top: 20px; padding: 12px 24px; background: var(--primary-color); color: white; border: none; border-radius: var(--border-radius); cursor: pointer; font-weight: 600;">
+                            Ver todos os produtos
+                        </button>
+                    </div>`;
                 return;
             }
             
@@ -2624,84 +2748,97 @@
         // ============================================
         function searchProducts() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
-            const container = document.getElementById('allProducts');
             
-            if (searchTerm === '') {
-                // Se a busca estiver vazia, voltar para a visualização padrão
-                if (currentSection === 'camisas') {
-                    navigateTo('camisas');
-                } else if (currentSection === 'calcas') {
-                    navigateTo('calcas');
-                } else if (currentSection === 'tenis') {
-                    navigateTo('tenis');
-                } else if (currentSection === 'todos') {
-                    navigateTo('todos');
-                } else {
-                    renderAllProducts();
-                }
+            let filteredProducts;
+            if (currentCategory === 'all') {
+                filteredProducts = produtos;
+            } else {
+                filteredProducts = produtos.filter(p => p.categoria === currentCategory);
+            }
+            
+            if (searchTerm !== '') {
+                filteredProducts = filteredProducts.filter(p =>
+                    p.nome.toLowerCase().includes(searchTerm) ||
+                    p.descricao.toLowerCase().includes(searchTerm) ||
+                    p.categoria.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            const container = document.getElementById('allProducts');
+            if (!container) return;
+            
+            if (filteredProducts.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <div style="font-size: 60px; margin-bottom: 20px;">🔍</div>
+                        <h3 style="margin-bottom: 10px; color: var(--text-color);">Nenhum produto encontrado</h3>
+                        <p style="color: #666; max-width: 400px; margin: 0 auto;">Não encontramos produtos correspondentes à sua busca.</p>
+                        <button onclick="filterByCategory('all'); document.getElementById('searchInput').value = '';" style="margin-top: 20px; padding: 12px 24px; background: var(--primary-color); color: white; border: none; border-radius: var(--border-radius); cursor: pointer; font-weight: 600;">
+                            Ver todos os produtos
+                        </button>
+                    </div>`;
                 return;
             }
             
-            // Filtrar produtos de acordo com o termo de busca
-            const filtered = produtos.filter(p =>
-                p.nome.toLowerCase().includes(searchTerm) ||
-                p.descricao.toLowerCase().includes(searchTerm) ||
-                p.categoria.toLowerCase().includes(searchTerm)
-            );
-            
-            renderProducts(filtered);
+            let html = '';
+            filteredProducts.forEach(produto => {
+                const stockClass = getStockClass(produto.estoque);
+                const stockText = getStockText(produto.estoque);
+                html += `
+            <div class="product-card">
+                ${produto.estoque <= 3 && produto.estoque > 0 ? 
+                    `<div class="product-badge">ÚLTIMAS UNIDADES</div>` : 
+                    produto.estoque === 0 ? 
+                    `<div class="product-badge" style="background:#7f8c8d">ESGOTADO</div>` : ''}
+                <div class="product-image-container">
+                    <img src="${produto.imagem}" alt="${produto.nome}" class="product-image" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">${produto.nome}</h3>
+                    <div class="product-price">
+                        R$ ${produto.preco.toFixed(2).replace('.', ',')}
+                    </div>
+                    <div class="stock-info ${stockClass}">${stockText}</div>
+                    <div class="product-buttons">
+                        ${produto.estoque > 0 ? 
+                            `<button class="product-btn buy-btn" data-id="${produto.id}">
+                                🛒 Comprar
+                            </button>` :
+                            `<button class="product-btn disabled-btn" disabled>
+                                🔴 Esgotado
+                            </button>`}
+                        <button class="product-btn details-btn" data-id="${produto.id}">
+                            👀 Detalhes
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+            });
+            container.innerHTML = html;
         }
 
         function sortProducts() {
             const sortBy = document.getElementById('sortSelect').value;
-            const container = document.getElementById('allProducts');
             
-            // Primeiro, determinar quais produtos estamos visualizando
-            let productsToSort = [];
-            if (currentSection === 'camisas') {
-                productsToSort = produtos.filter(p => p.categoria === 'camisas');
-            } else if (currentSection === 'calcas') {
-                productsToSort = produtos.filter(p => p.categoria === 'calcas');
-            } else if (currentSection === 'tenis') {
-                productsToSort = produtos.filter(p => p.categoria === 'tenis');
-            } else if (currentSection === 'todos') {
-                productsToSort = [...produtos];
+            let filteredProducts;
+            if (currentCategory === 'all') {
+                filteredProducts = [...produtos];
             } else {
-                productsToSort = [...produtos];
+                filteredProducts = produtos.filter(p => p.categoria === currentCategory);
             }
-            
-            let sortedProducts = [...productsToSort];
             
             switch (sortBy) {
-                case 'default':
-                    // Ordenação padrão por categoria: camisas, calças, tênis
-                    if (currentSection === 'todos' || currentSection === 'home') {
-                        sortedProducts.sort((a, b) => {
-                            const order = { 'camisas': 1, 'calcas': 2, 'tenis': 3 };
-                            return order[a.categoria] - order[b.categoria];
-                        });
-                    }
-                    // Se for uma categoria específica, mantém a ordem original
-                    break;
-                case 'price-asc': 
-                    sortedProducts.sort((a, b) => a.preco - b.preco); 
-                    break;
-                case 'price-desc': 
-                    sortedProducts.sort((a, b) => b.preco - a.preco); 
-                    break;
-                case 'name-asc': 
-                    sortedProducts.sort((a, b) => a.nome.localeCompare(b.nome)); 
-                    break;
-                case 'stock': 
-                    sortedProducts.sort((a, b) => b.estoque - a.estoque); 
-                    break;
+                case 'price-asc': filteredProducts.sort((a, b) => a.preco - b.preco); break;
+                case 'price-desc': filteredProducts.sort((a, b) => b.preco - a.preco); break;
+                case 'name-asc': filteredProducts.sort((a, b) => a.nome.localeCompare(b.nome)); break;
+                case 'stock': filteredProducts.sort((a, b) => b.estoque - a.estoque); break;
             }
             
-            renderProducts(sortedProducts);
+            renderProducts(filteredProducts);
         }
 
         function updateProductsDisplay() {
-            renderAllProducts();
+            filterByCategory(currentCategory);
         }
 
         // ============================================
